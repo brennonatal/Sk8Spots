@@ -1,0 +1,17 @@
+body {
+    background-color:rgb(64, 64, 235); 
+}
+
+h1 { 
+    text-align: center;
+    margin: 0
+}
+
+.navbar-default {
+    background-color: rgb(50, 243, 114);
+}
+
+#map {
+    height: 410px;
+    border: 1px solid #AAA;
+}

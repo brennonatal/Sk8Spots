@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Sk8Spots</title>
+    
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-1.0.22.min.css" />
+    <link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <script type="text/javascript" src="lib/jquery/jquery-1.0.0.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap-1.0.0.min.js"></script>
+    <script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <h1> <img src="images/Sk8Spots.png"> </h1>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Logo</a>
+              </div>
+          
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                  <li><a href="#">Link</a></li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+        
+    </div>
+
+    <div id="map"></div>
+
+    <!--
+    <iframe src="https://www.google.com/maps/d/embed?mid=1qOjWC0zztWn3KV993r0V4Sc8abPCIn-3" width="100%"
+        height="650"></iframe>
+    -->
+
+    <script type="text/javascript">
+    var map = L.map("map");
+
+    function iniciarMapa(lat, lng) {
+        var latlng = new L.LatLng(lat, lng);
+        map.setView(latlng, 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            subdomains: ['a', 'b', 'c'],
+            center: [latlng],
+            minZoom: 10,
+            zoom: 14
+        }).addTo(map);
+
+        var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
+            icons = [null];
+        for (i = 2; i >= 1; i--) {
+            icons.push(L.icon({
+                iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-iconi-2x.png" : "/lib/leaflet/js/images/" + i + "-iconi.png"),
+                iconSize: [32, 32],
+                iconAnchor: [16, 16],
+                popupAnchor: [0, -39]
+            }));
+        }
+
+        /*for (var i = 0; i < timeouts.length; i++) {
+            var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao],
+                {
+                icon: icons[timeouts[i].id_tipo_local]
+                })
+                .addTo(map);
+            marker.timeout = timeouts[i];
+            timeouts[i].marker = marker;
+            timeouts[i].indice = i;
+            marker.on('click', onMarkerClick);
+        }*/
+
+        /*map.on('click', function (e) {
+            var popup = L.popup()
+                .setLatLng([e.latlng.lat, e.latlng.lng])
+                .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
+                .openOn(map);
+        });*/
+    }
+
+    if (location.href.indexOf("https://") === 0) { // || location.href.indexOf("localhost") >= 0) {
+        navigator.geolocation.getCurrentPosition(function (location) {
+            iniciarMapa(location.coords.latitude, location.coords.longitude);
+        });
+    } else {
+        iniciarMapa(-23.611178, -46.696075);
+    }
+
+    </script>
+</body>
+
+</html>
