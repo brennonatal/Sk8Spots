@@ -1,5 +1,5 @@
 body {
-    background-color:rgb(64, 64, 235); 
+    background-color: #2b187c; 
 }
 
 h1 { 
@@ -8,10 +8,18 @@ h1 {
 }
 
 .navbar-default {
-    background-color: rgb(50, 243, 114);
+    background-color:#6746c3;
 }
 
 #map {
     height: 410px;
     border: 1px solid #AAA;
+}
+
+a{
+    color: rgb(0, 0, 0);
+}
+ 
+#map{
+    height: 500px;
 }
