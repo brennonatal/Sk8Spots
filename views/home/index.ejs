@@ -9,6 +9,7 @@
     <title>Sk8Spots</title>
     
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-1.0.22.min.css" />
+    <link rel="stylesheet" href="lib/font-awesome/css/font-awesome-1.0.2.min.css" />
     <link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css" />
 
@@ -19,6 +20,24 @@
 </head>
 
 <body>
+    <div id="map"></div>
+
+    <div style="position: fixed; top: 0; left: 0; padding: 10px; z-index: 1;">
+        <button type="button" class="btn btn-primary btn-lg" style="vertical-align: top;" onclick="mostrarMenuLateral()"><i class="fa fa-bars"></i></button>
+        <img src="images/Sk8Spots.png" width="250" style="vertical-align: top;" />
+    </div>
+
+    <div id="menuLateral">
+        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i class="fa fa-arrow-left"></i></button>
+
+        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Link</a>
+        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Link</a>
+        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Link</a>
+        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Link</a>
+        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Link</a>
+    </div>
+
+    <!--
     <div>
         <h1> <img src="images/Sk8Spots.png"> </h1>
 
@@ -48,12 +67,26 @@
         </nav>
         
     </div>
-
-    <div id="map">  </div>
-
+    -->
 
     <script type="text/javascript">
-    var map = L.map("map");
+    function mostrarMenuLateral() {
+        document.getElementById("menuLateral").style.left = "0px";
+    }
+
+    function ocultarMenuLateral() {
+        document.getElementById("menuLateral").style.left = "";
+    }
+    </script>
+
+    <script type="text/javascript">
+    var map = L.map("map", {
+        zoomControl: false
+    });
+
+    L.control.zoom({
+        position: "topright"
+    }).addTo(map);
 
     function iniciarMapa(lat, lng) {
         var latlng = new L.LatLng(lat, lng);
