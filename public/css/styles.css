@@ -13,22 +13,15 @@ h1 {
     margin: 0
 }
 
-.navbar-default {
-    background-color:#6746c3;
-}
 
 #map {
-    /* height: 500px;
-    border: 1px solid #AAA; */
     padding: 0;
     margin: 0;
     width: 100%;
     height: 100%;
 }
 
-a{
-    color: rgb(0, 0, 0);
-}
+
 
 #menuLateral {
     position: fixed;
@@ -37,7 +30,8 @@ a{
     left: -200px;
     bottom: 0;
     width: 200px;
-    background-color: white;
+    height: 400px;
+    background-color: rgb(64, 0, 138);
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     -webkit-transition: left ease-in-out .2s;
     -o-transition: left ease-in-out .2s;
@@ -49,5 +43,21 @@ a{
 }
 
 #menuLateral a {
+    color: rgb(255, 255, 255);
     text-align: left;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+   
+.fa-bars, .fa-arrow-left {
+    color: rgb(255, 255, 255);
+    font-weight: 520;
+}
+
+.btn-lg{
+    background-color: rgb(64, 0, 138);
+}
+
+.btn:hover{
+    background-color: rgb(233, 4, 183);
 }
