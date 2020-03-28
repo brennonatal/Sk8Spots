@@ -24,7 +24,7 @@
 
     <div class="botao_menu">
         <button type="button" class="btn btn-primary btn-lg" onclick="mostrarMenuLateral()"><i class="fa fa-bars"></i></button>
-        <img src="images/Sk8Spots.png" width="250" style="vertical-align: top;" />
+        <img src="images/sk8spots_VERDE.png" width="250" style="vertical-align: top;" />
     </div>
     <!--Menu lateral-->
     <div id="menuLateral">
@@ -101,6 +101,7 @@
     <script type="text/javascript">
     function abrirCadastro() {
         fecharContato();
+        ocultarMenuLateral();
         document.getElementById("cadastro").style.top = "13%";
     }
 
@@ -113,6 +114,7 @@
      <script type="text/javascript">
         function abrirContato() {
             fecharCadastro();
+            ocultarMenuLateral();
             document.getElementById("contato").style.top = "13%";
         }
     
