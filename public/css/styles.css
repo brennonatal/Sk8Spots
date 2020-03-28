@@ -8,12 +8,6 @@ body {
     overflow: hidden;
 }
 
-h1 { 
-    text-align: center;
-    margin: 0
-}
-
-
 #map {
     padding: 0;
     margin: 0;
@@ -21,7 +15,14 @@ h1 {
     height: 100%;
 }
 
-
+.botao_menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 1;
+    vertical-align: top;
+}
 
 #menuLateral {
     position: fixed;
@@ -32,7 +33,7 @@ h1 {
     width: 200px;
     height: 400px;
     background-color: rgb(64, 0, 138);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     -webkit-transition: left ease-in-out .2s;
     -o-transition: left ease-in-out .2s;
     transition: left ease-in-out .2s;
@@ -42,22 +43,90 @@ h1 {
     border-radius: 0;
 }
 
-#menuLateral a {
+#menuLateral button {
     color: rgb(255, 255, 255);
     text-align: left;
     font-size: 20px;
+    font-weight: 600;
     font-family: 'Courier New', Courier, monospace;
 }
-   
+
 .fa-bars, .fa-arrow-left {
     color: rgb(255, 255, 255);
     font-weight: 520;
 }
 
-.btn-lg{
+.btn-lg {
     background-color: rgb(64, 0, 138);
+    height: auto;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: rgb(233, 4, 183);
+}
+
+#cadastro, #contato {
+    position: fixed;
+    z-index: 2;
+    top: -600px;
+    bottom: 0;
+    width: 50%;
+    height: min-content;
+    padding-bottom: 30px;
+    background-color: rgb(64, 0, 138);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    -webkit-transition: top ease-in-out .3s;
+    -o-transition: top ease-in-out .3s;
+    transition: top ease-in-out .3s;
+}
+
+.close {
+    color: rgb(233, 4, 183);
+    float: right;
+    opacity: initial;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+form {
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold; 
+}
+
+form h2{
+    font-weight: bold; 
+}
+
+form input {
+    width: 80%;
+    margin: 10px 0;
+    border: none;
+    border-radius: 2px;
+}
+
+form button{
+    background-color: rgb(233, 4, 183);
+    border: none;
+    font-size: 24px;
+    border-radius: 5px;
+    margin-top: 10px;
+    
+}
+
+form span{
+    font-size: 24px;
+}
+
+textarea{
+    width: 100%;
+    border-radius: 2px;
+    margin: 10px 0;
 }

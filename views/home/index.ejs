@@ -22,24 +22,71 @@
 <body>
     <div id="map"></div>
 
-    <div style="position: fixed; top: 0; left: 0; padding: 10px; z-index: 1;">
-        <button type="button" class="btn btn-primary btn-lg" style="vertical-align: top;" onclick="mostrarMenuLateral()"><i class="fa fa-bars"></i></button>
+    <div class="botao_menu">
+        <button type="button" class="btn btn-primary btn-lg" onclick="mostrarMenuLateral()"><i class="fa fa-bars"></i></button>
         <img src="images/Sk8Spots.png" width="250" style="vertical-align: top;" />
     </div>
-
+    <!--Menu lateral-->
     <div id="menuLateral">
         <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i class="fa fa-arrow-left"></i></button>
 
-        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> SkateParks</a>
-        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Bowls</a>
-        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> StreetSpots</a>
-        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> DownHill</a>
-        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i> SkateShops</a>
-        <a href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-sign-in"></i> Sign in</a>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> SkateParks</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Bowls</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-road"></i> StreetSpots</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> DownHill</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i> SkateShops</button>
+        <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirCadastro()"><i class="fa fa-sign-in"></i> Sign in</button>
+        <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirContato()"><i class="fa fa-envelope"></i> Contact Us</button>
     </div>
 
+    <!--Sign in form-->
+    <div id="cadastro" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
+        <div class="conteudo-cadastro">
+            
+              <button type="button" class="close" onclick="fecharCadastro()">&times;</button>
+              <form action="">
+                <h2>Sign Up</h2>
+                <div>
+                  <input type="text" name="name" placeholder="First Name">
+                  <input type="text" name="name" placeholder="Last Name">
+                  <input type="text" name="email" placeholder="Email">
+                  <input type="password" name="pwd" placeholder="Password">
+                  <input type="password" name="pwd" placeholder="Repeat Password">
+                </div>
+                
+                <button type="submit" href="/">Create user</button>
+              </form>
+            
+          </div>
+      </div>
+
+      <!--Contate-nos-->
+      <div id="contato" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
+        <div class="conteudo-cadastro">
+            
+              <button type="button" class="close" onclick="fecharContato()">&times;</button>
+              <form action="">
+                <h2>Contact Us</h2>
+                <div>
+                    <input type="text" name="name" placeholder="First Name">
+                    <input type="text" name="name" placeholder="Last Name">
+                  <input type="email" name="email" placeholder="Email">
+                  <input type="tel" name="phone" placeholder="Phone Number">
+                </div>
+                <span>Message</span>
+                <div>
+                  <textarea rows="4"></textarea>
+                </div>
+                <button type="submit" href="/">Submit</button>
+              </form>
+            
+          </div>
+      </div>
    
 
+      <!--INICIO DO SCRIPT-->
+
+      <!--Script menu lateral-->
     <script type="text/javascript">
     function mostrarMenuLateral() {
         document.getElementById("menuLateral").style.left = "0px";
@@ -50,6 +97,31 @@
     }
     </script>
 
+    <!--Script cadastro-->
+    <script type="text/javascript">
+    function abrirCadastro() {
+        fecharContato();
+        document.getElementById("cadastro").style.top = "13%";
+    }
+
+    function fecharCadastro() {
+        document.getElementById("cadastro").style.top = "";
+    }
+    </script>
+
+     <!--Script contate-nos-->
+     <script type="text/javascript">
+        function abrirContato() {
+            fecharCadastro();
+            document.getElementById("contato").style.top = "13%";
+        }
+    
+        function fecharContato() {
+            document.getElementById("contato").style.top = "";
+        }
+        </script>
+
+    <!--Script mapa-->
     <script type="text/javascript">
     var map = L.map("map", {
         zoomControl: false
@@ -76,7 +148,7 @@
             icons.push(L.icon({
                 iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-iconi-2x.png" : "/lib/leaflet/js/images/" + i + "-iconi.png"),
                 iconSize: [32, 32],
-                iconAnchor: [16, 16],
+                iconAnchor: [24, 24],
                 popupAnchor: [0, -39]
             }));
         }
@@ -101,7 +173,7 @@
         });*/
     }
 
-    if (location.href.indexOf("https://") === 0) { // || location.href.indexOf("localhost") >= 0) {
+    if (location.href.indexOf("https://") === 0) { // || (location.href.indexOf("localhost") >= 0) {
         navigator.geolocation.getCurrentPosition(function (location) {
             iniciarMapa(location.coords.latitude, location.coords.longitude);
         });
