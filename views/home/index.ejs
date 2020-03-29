@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
+    <link rel=icon href="images/sk8spots_ICON.png">
     <title>Sk8Spots</title>
-    
+
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-1.0.22.min.css" />
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome-1.0.2.min.css" />
     <link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />
@@ -20,168 +21,178 @@
 </head>
 
 <body>
+    
     <div id="map"></div>
 
     <div class="botao_menu">
-        <button type="button" class="btn btn-primary btn-lg" onclick="mostrarMenuLateral()"><i class="fa fa-bars"></i></button>
-        <img src="images/sk8spots_VERDE.png" width="250" style="vertical-align: top;" />
+        <button type="button" class="btn btn-primary btn-lg" onclick="mostrarMenuLateral()"><i
+                class="fa fa-bars"></i></button>
+        <img src="images/sk8spots_LOGO_preto@3x.png" width="250" style="vertical-align: top;" />
     </div>
     <!--Menu lateral-->
     <div id="menuLateral">
-        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i class="fa fa-arrow-left"></i></button>
+        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i
+                class="fa fa-arrow-left"></i></button>
 
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> SkateParks</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i>
+            SkateParks</button>
         <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> Bowls</button>
         <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-road"></i> StreetSpots</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i> DownHill</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i> SkateShops</button>
-        <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirCadastro()"><i class="fa fa-sign-in"></i> Sign in</button>
-        <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirContato()"><i class="fa fa-envelope"></i> Contact Us</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-area-chart"></i>
+            DownHill</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i>
+            SkateShops</button>
+        <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirCadastro()"><i
+                class="fa fa-sign-in"></i> Sign in</button>
+        <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirContato()"><i
+                class="fa fa-envelope"></i> Contact Us</button>
     </div>
 
     <!--Sign in form-->
     <div id="cadastro" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
         <div class="conteudo-cadastro">
-            
-              <button type="button" class="close" onclick="fecharCadastro()">&times;</button>
-              <form action="">
+
+            <button type="button" class="close" onclick="fecharCadastro()">&times;</button>
+            <form action="">
                 <h2>Sign Up</h2>
                 <div>
-                  <input type="text" name="name" placeholder="First Name">
-                  <input type="text" name="name" placeholder="Last Name">
-                  <input type="text" name="email" placeholder="Email">
-                  <input type="password" name="pwd" placeholder="Password">
-                  <input type="password" name="pwd" placeholder="Repeat Password">
+                    <input type="text" name="name" placeholder="First Name">
+                    <input type="text" name="name" placeholder="Last Name">
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="pwd" placeholder="Password">
+                    <input type="password" name="pwd" placeholder="Repeat Password">
                 </div>
-                
-                <button type="submit" href="/">Create user</button>
-              </form>
-            
-          </div>
-      </div>
 
-      <!--Contate-nos-->
-      <div id="contato" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
+
+                <button type="submit" href="/">Create user</button>
+            </form>
+
+        </div>
+    </div>
+
+    <!--Contate-nos-->
+    <div id="contato" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
         <div class="conteudo-cadastro">
-            
-              <button type="button" class="close" onclick="fecharContato()">&times;</button>
-              <form action="">
+
+            <button type="button" class="close" onclick="fecharContato()">&times;</button>
+            <form action="">
                 <h2>Contact Us</h2>
                 <div>
                     <input type="text" name="name" placeholder="First Name">
                     <input type="text" name="name" placeholder="Last Name">
-                  <input type="email" name="email" placeholder="Email">
-                  <input type="tel" name="phone" placeholder="Phone Number">
+                    <input type="email" name="email" placeholder="Email">
+                    <input type="tel" name="phone" placeholder="Phone Number">
                 </div>
                 <span>Message</span>
                 <div>
-                  <textarea rows="4"></textarea>
+                    <textarea rows="4"></textarea>
                 </div>
                 <button type="submit" href="/">Submit</button>
-              </form>
-            
-          </div>
-      </div>
-   
+            </form>
 
-      <!--INICIO DO SCRIPT-->
+        </div>
+    </div>
 
-      <!--Script menu lateral-->
+
+    <!--INICIO DO SCRIPT-->
+
+    <!--Script menu lateral-->
     <script type="text/javascript">
-    function mostrarMenuLateral() {
-        document.getElementById("menuLateral").style.left = "0px";
-    }
+        function mostrarMenuLateral() {
+            document.getElementById("menuLateral").style.left = "0px";
+        }
 
-    function ocultarMenuLateral() {
-        document.getElementById("menuLateral").style.left = "";
-    }
+        function ocultarMenuLateral() {
+            document.getElementById("menuLateral").style.left = "";
+        }
     </script>
 
     <!--Script cadastro-->
     <script type="text/javascript">
-    function abrirCadastro() {
-        fecharContato();
-        ocultarMenuLateral();
-        document.getElementById("cadastro").style.top = "13%";
-    }
+        function abrirCadastro() {
+            fecharContato();
+            ocultarMenuLateral();
+            document.getElementById("cadastro").style.top = "13%";
+        }
 
-    function fecharCadastro() {
-        document.getElementById("cadastro").style.top = "";
-    }
+        function fecharCadastro() {
+            document.getElementById("cadastro").style.top = "";
+        }
+
     </script>
 
-     <!--Script contate-nos-->
-     <script type="text/javascript">
+    <!--Script contate-nos-->
+    <script type="text/javascript">
         function abrirContato() {
             fecharCadastro();
             ocultarMenuLateral();
             document.getElementById("contato").style.top = "13%";
         }
-    
+
         function fecharContato() {
             document.getElementById("contato").style.top = "";
         }
-        </script>
+    </script>
 
     <!--Script mapa-->
     <script type="text/javascript">
-    var map = L.map("map", {
-        zoomControl: false
-    });
+        var map = L.map("map", {
+            zoomControl: false
+        });
 
-    L.control.zoom({
-        position: "topright"
-    }).addTo(map);
-
-    function iniciarMapa(lat, lng) {
-        var latlng = new L.LatLng(lat, lng);
-        map.setView(latlng, 14);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            subdomains: ['a', 'b', 'c'],
-            center: [latlng],
-            minZoom: 10,
-            zoom: 14
+        L.control.zoom({
+            position: "topright"
         }).addTo(map);
 
-        var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
-            icons = [null];
-        for (i = 2; i >= 1; i--) {
-            icons.push(L.icon({
-                iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-iconi-2x.png" : "/lib/leaflet/js/images/" + i + "-iconi.png"),
-                iconSize: [32, 32],
-                iconAnchor: [24, 24],
-                popupAnchor: [0, -39]
-            }));
+        function iniciarMapa(lat, lng) {
+            var latlng = new L.LatLng(lat, lng);
+            map.setView(latlng, 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                subdomains: ['a', 'b', 'c'],
+                center: [latlng],
+                minZoom: 10,
+                zoom: 14
+            }).addTo(map);
+
+            var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
+                icons = [null];
+            for (i = 2; i >= 1; i--) {
+                icons.push(L.icon({
+                    iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-iconi-2x.png" : "/lib/leaflet/js/images/" + i + "-iconi.png"),
+                    iconSize: [32, 32],
+                    iconAnchor: [24, 24],
+                    popupAnchor: [0, -39]
+                }));
+            }
+
+            /*for (var i = 0; i < timeouts.length; i++) {
+                var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao],
+                    {
+                    icon: icons[timeouts[i].id_tipo_local]
+                    })
+                    .addTo(map);
+                marker.timeout = timeouts[i];
+                timeouts[i].marker = marker;
+                timeouts[i].indice = i;
+                marker.on('click', onMarkerClick);
+            }*/
+
+            /*map.on('click', function (e) {
+                var popup = L.popup()
+                    .setLatLng([e.latlng.lat, e.latlng.lng])
+                    .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
+                    .openOn(map);
+            });*/
         }
 
-        /*for (var i = 0; i < timeouts.length; i++) {
-            var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao],
-                {
-                icon: icons[timeouts[i].id_tipo_local]
-                })
-                .addTo(map);
-            marker.timeout = timeouts[i];
-            timeouts[i].marker = marker;
-            timeouts[i].indice = i;
-            marker.on('click', onMarkerClick);
-        }*/
-
-        /*map.on('click', function (e) {
-            var popup = L.popup()
-                .setLatLng([e.latlng.lat, e.latlng.lng])
-                .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
-                .openOn(map);
-        });*/
-    }
-
-    if (location.href.indexOf("https://") === 0) { // || (location.href.indexOf("localhost") >= 0) {
-        navigator.geolocation.getCurrentPosition(function (location) {
-            iniciarMapa(location.coords.latitude, location.coords.longitude);
-        });
-    } else {
-        iniciarMapa(-23.611178, -46.696075);
-    }
+        if (location.href.indexOf("https://") === 0) { // || (location.href.indexOf("localhost") >= 0) {
+            navigator.geolocation.getCurrentPosition(function (location) {
+                iniciarMapa(location.coords.latitude, location.coords.longitude);
+            });
+        } else {
+            iniciarMapa(-23.611178, -46.696075);
+        }
 
     </script>
 </body>

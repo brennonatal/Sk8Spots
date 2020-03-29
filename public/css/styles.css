@@ -95,10 +95,10 @@ body {
 }
 
 form {
-    color: white;
+    color: rgb(0, 0, 0);
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
-    font-weight: bold; 
+    
 }
 
 form h2{
@@ -114,6 +114,7 @@ form input {
 
 form button{
     background-color: rgb(233, 4, 183);
+    color: rgb(255, 255, 255);
     border: none;
     font-size: 24px;
     border-radius: 5px;
@@ -123,6 +124,7 @@ form button{
 
 form span{
     font-size: 24px;
+    font-weight: bold;
 }
 
 textarea{
