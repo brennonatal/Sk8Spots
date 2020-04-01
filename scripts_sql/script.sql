@@ -10,7 +10,7 @@ CREATE TABLE tipo (
   UNIQUE KEY nome_UN (nome)
 );
 
-INSERT INTO tipo (id, nome) VALUES (1, 'SkateParks'), (2, 'Bowls'), (3, 'StreetSpots'), (4, 'DownHill'), (5, 'SkateShops');
+INSERT INTO tipo (id, nome) VALUES (1, 'SkatePark'), (2, 'Bowl'), (3, 'StreetSpot'), (4, 'DownHill'), (5, 'SkateShop');
 
 CREATE TABLE local (
   id int NOT NULL AUTO_INCREMENT,
