@@ -31,7 +31,8 @@ body {
     left: -200px;
     bottom: 0;
     width: 200px;
-    height: 400px;
+    height: 377px;
+    border-radius: 2px;
     background-color: rgb(64, 0, 138);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     -webkit-transition: left ease-in-out .2s;
@@ -73,7 +74,8 @@ body {
     width: 50%;
     height: min-content;
     padding-bottom: 30px;
-    background-color: rgb(64, 0, 138);
+    border-radius: 4px;
+    background-color: rgba(64, 0, 138 , 0.85);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     -webkit-transition: top ease-in-out .3s;
     -o-transition: top ease-in-out .3s;
@@ -95,9 +97,9 @@ body {
 }
 
 form {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    
     
 }
 
@@ -119,7 +121,15 @@ form button{
     font-size: 24px;
     border-radius: 5px;
     margin-top: 10px;
+    font-weight: bold;
+    transition: ease-in-out 0.3s all;
+    font-family: 'Courier New', Courier, monospace;
     
+}
+
+form button:hover{
+   width: 50%;
+   height: 10%;
 }
 
 form span{
