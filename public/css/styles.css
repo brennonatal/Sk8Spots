@@ -49,7 +49,7 @@ body {
     text-align: left;
     font-size: 20px;
     font-weight: 600;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
 }
 
 .fa-bars, .fa-arrow-left {
@@ -123,7 +123,7 @@ form button{
     margin-top: 10px;
     font-weight: bold;
     transition: ease-in-out 0.3s all;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto', sans-serif;
     
 }
 
