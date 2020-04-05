@@ -14,9 +14,8 @@
     <!--ICONES ICOMOON-->
     <link rel="stylesheet" href="lib/icomoon_1/demo-files/demo.css">
     <link rel="stylesheet" href="lib/icomoon_1/style.css">
-    <link rel="stylesheet" href="lib/iconmoon_1/selection.json">
-   
- 
+
+
 
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-1.0.22.min.css" />
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome-1.0.2.min.css" />
@@ -41,14 +40,19 @@
     <!--Menu lateral-->
     <div id="menuLateral">
         <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i
-                class="fa fa-arrow-left"></i></button>
+                class="fa fa-arrow-left" style="margin-right: 95px;"></i></button>
+
+        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="abrirNovoSpot()"><i
+                class="fa fa-plus"></i></button>
 
         <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_skatepark"></i>
             SkateParks</button>
         <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_bowl"></i> Bowls</button>
         <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-road"></i> StreetSpots</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_downhill"></i> DownHill</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i> SkateShops</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_downhill"></i>
+            DownHill</button>
+        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i>
+            SkateShops</button>
         <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirCadastro()"><i
                 class="fa fa-sign-in"></i> Sign in</button>
         <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirContato()"><i
@@ -63,11 +67,14 @@
             <form action="">
                 <h2>Sign Up</h2>
                 <div>
-                    <input type="text" id="Fname" placeholder="First Name">
-                    <input type="text" id="Lname" placeholder="Last Name">
-                    <input type="email" id="email" placeholder="Email" spellcheck="false">
-                    <input type="password" id="pwd" placeholder="Password">
-                    <input type="password" id="pwd" placeholder="Repeat Password">
+                    <label for="contactName">Full Name:</label>
+                    <input type="text" id="userName" placeholder="First Name"> </br>
+                    <label for="contactEmail">Email Address:</label>
+                    <input type="email" id="userEmail" placeholder="Email" spellcheck="false"> </br>
+                    <label for="userPwd">Password:</label>
+                    <input type="password" id="userPwd" placeholder="Password"> </br>
+                    <label for="userPwd2">Repeat Password:</label>
+                    <input type="password" id="userPwd2" placeholder="Repeat Password">
                 </div>
 
 
@@ -85,12 +92,14 @@
             <form action="">
                 <h2>Contact Us</h2>
                 <div>
-                    <input type="text" id="contactFname" placeholder="First Name">
-                    <input type="text" id="contactLname" placeholder="Last Name">
-                    <input type="email" id="contactEmail" placeholder="Email" spellcheck="false">
+                    <label for="contactName">Full Name:</label>
+                    <input type="text" id="contactFname" placeholder="First Name"> </br>
+                    <label for="contactEmail">Email Address</label>
+                    <input type="email" id="contactEmail" placeholder="Email" spellcheck="false"> </br>
+                    <label for="contactPhone">Phone Number</label>
                     <input type="tel" id="contactPhone" placeholder="Phone Number">
                 </div>
-                <span>Message</span>
+                <span>Message:</span>
                 <div>
                     <textarea rows="4"></textarea>
                 </div>
@@ -100,12 +109,68 @@
         </div>
     </div>
 
-    <!--About US-->
+    <!--Add new Spot-->
+    <div id="newSpot" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
+        <div class="conteudo-cadastro">
+            <button type="button" class="close" onclick="fecharNovospot()">&times;</button>
+            <form action="">
+                <h2>Add New Spot</h2>
+                <div>
+                    <label for="spotName">Spot Name:</label>
+                    <input type="text" id="spotName"> </br>
+                    <label for="tipo">Spot Kind:</label>
+                    <select id="tipo" size="1">
+                        <option selected="selected" value="2">SkatePark</option>
+                        <option value="4">Bowl</option>
+                        <option value="8">StreetSpot</option>
+                        <option value="16">DownHill</option>
+                        <option value="32">SkateShop</option>
+                    </select> </br>
+                    <label for="address">Spot Address:</label>
+                    <input type="text" id="address" placeholder="Ex: Rua Jaraguá, 627"> </br>
+                    <label for="bairro">Spot Neighborhood:</label>
+                    <input type="text" id="bairro" placeholder="Ex: Bom Retiro"> </br>
+                    <div>
+                        <span>Spot Facilities:</span> </br>
+                        <label for="isSkatepark">SkatePark</label>
+                        <input type="checkbox" id="isSkatepark">
+                        <label for="isBowl">Bowl</label>
+                        <input type="checkbox" id="isBowl">
+                        <label for="isStreetspot">StreetSpot</label>
+                        <input type="checkbox" id="isStreetspot">
+                        <label for="isDownhill">DownHill</label>
+                        <input type="checkbox" id="isDownhill">
+                        <label for="isSkateshop">SkateShop</label>
+                        <input type="checkbox" id="isSkateshop">
+                    </div>
+                    <div>
+                        <span>Spot Pictures:</span>
+                        <input type="file" id="spotImages" accept="image/*" />
+                    </div>
+                </div>
+                <button type="submit" href="/">Add Spot</button>
+            </form>
+        </div>
+    </div>
 
-    
+
 
 
     <!--INICIO DO SCRIPT-->
+
+    <!--Script New Spot-->
+    <script type="text/javascript">
+        function abrirNovoSpot() {
+            fecharContato();
+            ocultarMenuLateral();
+            document.getElementById("newSpot").style.top = "13%";
+        }
+
+        function fecharNovospot() {
+            document.getElementById("newSpot").style.top = "";
+        }
+
+    </script>
 
     <!--Script menu lateral-->
     <script type="text/javascript">
@@ -123,6 +188,7 @@
         function abrirCadastro() {
             fecharContato();
             ocultarMenuLateral();
+            fecharNovospot();
             document.getElementById("cadastro").style.top = "13%";
         }
 
@@ -137,6 +203,7 @@
         function abrirContato() {
             fecharCadastro();
             ocultarMenuLateral();
+            fecharNovospot();
             document.getElementById("contato").style.top = "13%";
         }
 

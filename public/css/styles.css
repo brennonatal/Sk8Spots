@@ -66,7 +66,7 @@ body {
     background-color: rgb(233, 4, 183);
 }
 
-#cadastro, #contato {
+#cadastro, #contato, #newSpot {
     position: fixed;
     z-index: 2;
     top: -600px;
@@ -75,7 +75,7 @@ body {
     height: min-content;
     padding-bottom: 30px;
     border-radius: 4px;
-    background-color: rgba(64, 0, 138 , 0.85);
+    background-color: rgba(64, 0, 138 , 0.95);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     -webkit-transition: top ease-in-out .3s;
     -o-transition: top ease-in-out .3s;
@@ -96,23 +96,26 @@ body {
     cursor: pointer;
 }
 
-form {
+form label{
     color: rgb(255, 255, 255);
-    text-align: center;
-    
+    text-align: left;
+    font-size: 16px;
     
 }
 
 form h2{
     font-weight: bold; 
+    text-align: center;
+    color: white; 
 }
 
-form input {
-    width: 80%;
+form input{
+    width: auto;
     margin: 10px 0;
     border: none;
     border-radius: 2px;
 }
+
 
 form button{
     background-color: rgb(233, 4, 183);
@@ -122,27 +125,30 @@ form button{
     border-radius: 5px;
     margin-top: 10px;
     font-weight: bold;
-    transition: ease-in-out 0.3s all;
     font-family: 'Roboto', sans-serif;
-    
+    text-align: center;
+    justify-self: center;
+    justify-content: center;
+   
 }
 
-form button:hover{
-   width: 50%;
-   height: 10%;
-}
 
-form span{
-    font-size: 24px;
+span{
+    font-size: 22px;
     font-weight: bold;
+    color: white;
+    text-align: center;
+    
 }
 
 textarea{
     width: 100%;
     border-radius: 2px;
     margin: 10px 0;
+
 }
 
 .icons{
     width: 22px;
 }
+
