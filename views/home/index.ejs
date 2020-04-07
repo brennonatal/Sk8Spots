@@ -53,13 +53,14 @@
             DownHill</button>
         <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i>
             SkateShops</button>
+        <!--
         <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirCadastro()"><i
                 class="fa fa-sign-in"></i> Sign in</button>
         <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirContato()"><i
-                class="fa fa-envelope"></i> Contact Us</button>
+                class="fa fa-envelope"></i> Contact Us</button> -->
     </div>
 
-    <!--Sign in form-->
+    <!--Sign in form
     <div id="cadastro" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
         <div class="conteudo-cadastro">
 
@@ -67,10 +68,10 @@
             <form action="">
                 <h2>Sign Up</h2>
                 <div>
-                    <label for="contactName">Full Name:</label>
-                    <input type="text" id="userName" placeholder="First Name"> </br>
-                    <label for="contactEmail">Email Address:</label>
-                    <input type="email" id="userEmail" placeholder="Email" spellcheck="false"> </br>
+                    <label for="POST-userName">Full Name:</label>
+                    <input type="text" id="POST-userName" > </br>
+                    <label for="POST-userEmail">Email Address:</label>
+                    <input type="email" id="POST-userEmail" spellcheck="false"> </br>
                     <label for="userPwd">Password:</label>
                     <input type="password" id="userPwd" placeholder="Password"> </br>
                     <label for="userPwd2">Repeat Password:</label>
@@ -82,9 +83,9 @@
             </form>
 
         </div>
-    </div>
+    </div>    -->
 
-    <!--Contate-nos-->
+    <!--Contate-nos
     <div id="contato" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
         <div class="conteudo-cadastro">
 
@@ -107,7 +108,7 @@
             </form>
 
         </div>
-    </div>
+    </div>   -->
 
     <!--Add new Spot-->
     <div id="newSpot" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
@@ -116,20 +117,20 @@
             <form action="">
                 <h2>Add New Spot</h2>
                 <div>
-                    <label for="spotName">Spot Name:</label>
-                    <input type="text" id="spotName"> </br>
-                    <label for="tipo">Spot Kind:</label>
-                    <select id="tipo" size="1">
+                    <label for="POST-spotName">Spot Name:</label>
+                    <input type="text" id="POST-spotName"> </br>
+                    <label for="POST-tipo">Spot Kind:</label>
+                    <select id="POST-tipo" size="1">
                         <option selected="selected" value="2">SkatePark</option>
                         <option value="4">Bowl</option>
                         <option value="8">StreetSpot</option>
                         <option value="16">DownHill</option>
                         <option value="32">SkateShop</option>
                     </select> </br>
-                    <label for="address">Spot Address:</label>
-                    <input type="text" id="address" placeholder="Ex: Rua Jaraguá, 627"> </br>
-                    <label for="bairro">Spot Neighborhood:</label>
-                    <input type="text" id="bairro" placeholder="Ex: Bom Retiro"> </br>
+                    <label for="POST-address">Spot Address:</label>
+                    <input type="text" id="POST-address" placeholder="Ex: Rua Jaraguá, 627"> </br>
+                    <label for="POST-bairro">Spot Neighborhood:</label>
+                    <input type="text" id="POST-bairro" placeholder="Ex: Bom Retiro"> </br>
                     <div>
                         <span>Spot Facilities:</span> </br>
                         <label for="isSkatepark">SkatePark</label>
@@ -161,7 +162,7 @@
     <!--Script New Spot-->
     <script type="text/javascript">
         function abrirNovoSpot() {
-            fecharContato();
+            // fecharContato();
             ocultarMenuLateral();
             document.getElementById("newSpot").style.top = "13%";
         }
@@ -183,7 +184,9 @@
         }
     </script>
 
-    <!--Script cadastro-->
+    
+
+    <!--Script cadastro
     <script type="text/javascript">
         function abrirCadastro() {
             fecharContato();
@@ -196,9 +199,9 @@
             document.getElementById("cadastro").style.top = "";
         }
 
-    </script>
+    </script>  -->
 
-    <!--Script contate-nos-->
+    <!--Script contate-nos
     <script type="text/javascript">
         function abrirContato() {
             fecharCadastro();
@@ -210,7 +213,7 @@
         function fecharContato() {
             document.getElementById("contato").style.top = "";
         }
-    </script>
+    </script>  -->
 
     <!--Script mapa-->
     <script type="text/javascript">
