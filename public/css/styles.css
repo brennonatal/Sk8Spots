@@ -113,7 +113,7 @@ form h2{
 }
 
 form input{
-    width: auto;
+    width: max-content;
     margin: 10px 0;
     border: none;
     border-radius: 2px;
