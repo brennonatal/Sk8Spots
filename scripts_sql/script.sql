@@ -17,14 +17,18 @@ CREATE TABLE local (
   nome varchar(100) NOT NULL,
   latitude float,
   longitude float,
+  idtipo int NOT NULL,
+  endereco varchar(100) NOT NULL,
+  bairro varchar(50) NOT NULL,
   PRIMARY KEY (id),
+  CONSTRAINT local_idtipo_FK FOREIGN KEY (idtipo) REFERENCES tipo (id) ON DELETE RESTRICT ON UPDATE RESTRICT,
   UNIQUE KEY nome_UN (nome)
 );
 
-CREATE TABLE local_tipo (
+CREATE TABLE local_instalacao (
   idlocal int NOT NULL,
   idtipo int NOT NULL,
-  PRIMARY KEY (id_local, id_tipo),
+  PRIMARY KEY (idlocal, idtipo),
   CONSTRAINT idlocal_FK FOREIGN KEY (idlocal) REFERENCES local (id) ON DELETE CASCADE ON UPDATE RESTRICT,
-  CONSTRAINT idtipo_FK FOREIGN KEY (idtipo) REFERENCES tipo (id) ON DELETE CASCADE ON UPDATE RESTRICT
+  CONSTRAINT idtipo_FK FOREIGN KEY (idtipo) REFERENCES tipo (id) ON DELETE RESTRICT ON UPDATE RESTRICT
 );

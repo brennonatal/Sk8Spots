@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="lib/icomoon_1/demo-files/demo.css">
     <link rel="stylesheet" href="lib/icomoon_1/style.css">
 
-
-
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-1.0.22.min.css" />
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome-1.0.2.min.css" />
     <link rel="stylesheet" href="lib/leaflet/css/leaflet.css" />
@@ -24,6 +22,8 @@
 
     <script type="text/javascript" src="lib/jquery/jquery-1.0.0.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap-1.0.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-validate/js/jquery-validate-1.0.0.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-validate/js/messages_pt_BR.min.js"></script>
     <script type="text/javascript" src="lib/leaflet/js/leaflet.js"></script>
 
 </head>
@@ -111,51 +111,64 @@
     </div>   -->
 
     <!--Add new Spot-->
-    <div id="newSpot" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
-        <div class="conteudo-cadastro">
-            <button type="button" class="close" onclick="fecharNovospot()">&times;</button>
-            <form action="">
-                <h2>Add New Spot</h2>
-                <div>
-                    <label for="POST-spotName">Spot Name:</label>
-                    <input type="text" id="POST-spotName"> </br>
-                    <label for="POST-tipo">Spot Kind:</label>
-                    <select id="POST-tipo" size="1">
-                        <option selected="selected" value="2">SkatePark</option>
-                        <option value="4">Bowl</option>
-                        <option value="8">StreetSpot</option>
-                        <option value="16">DownHill</option>
-                        <option value="32">SkateShop</option>
-                    </select> </br>
-                    <label for="POST-address">Spot Address:</label>
-                    <input type="text" id="POST-address" placeholder="Ex: Rua Jaraguá, 627"> </br>
-                    <label for="POST-bairro">Spot Neighborhood:</label>
-                    <input type="text" id="POST-bairro" placeholder="Ex: Bom Retiro"> </br>
-                    <div>
-                        <span>Spot Facilities:</span> </br>
-                        <label for="isSkatepark">SkatePark</label>
-                        <input type="checkbox" id="isSkatepark">
-                        <label for="isBowl">Bowl</label>
-                        <input type="checkbox" id="isBowl">
-                        <label for="isStreetspot">StreetSpot</label>
-                        <input type="checkbox" id="isStreetspot">
-                        <label for="isDownhill">DownHill</label>
-                        <input type="checkbox" id="isDownhill">
-                        <label for="isSkateshop">SkateShop</label>
-                        <input type="checkbox" id="isSkateshop">
-                    </div>
-                    <div>
-                        <span>Spot Pictures:</span>
-                        <input type="file" id="spotImages" accept="image/*" />
-                    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="newSpot">
+        <div class="modal-dialog">
+          <form class="modal-content" id="formAdd">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Add New Spot</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="latitude" name="latitude" />
+                <input type="hidden" id="longitude" name="longitude" />
+                <div class="form-group">
+                    <label for="nome">Spot Name:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" />
                 </div>
-                <button type="submit" href="/">Add Spot</button>
-            </form>
+                <div class="form-group">
+                    <label for="idtipo">Spot Kind:</label>
+                    <select id="idtipo" class="form-control" name="idtipo" size="1">
+                        <option selected="selected" value="">Selecione...</option>
+                        <option value="1">SkatePark</option>
+                        <option value="2">Bowl</option>
+                        <option value="3">StreetSpot</option>
+                        <option value="4">DownHill</option>
+                        <option value="5">SkateShop</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Spot Address:</label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Ex: Rua Jaraguá, 627" maxlength="100" />
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Spot Neighborhood:</label>
+                    <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Ex: Bom Retiro" maxlength="50" />
+                </div>
+                <div class="form-group">
+                    <span>Spot Facilities:</span> <br />
+                    <label for="isSkatepark">SkatePark</label>
+                    <input type="checkbox" id="isSkatepark" name="instalacoes" value="1" />
+                    <label for="isBowl">Bowl</label>
+                    <input type="checkbox" id="isBowl" name="instalacoes" value="2" />
+                    <label for="isStreetspot">StreetSpot</label>
+                    <input type="checkbox" id="isStreetspot" name="instalacoes" value="3" />
+                    <label for="isDownhill">DownHill</label>
+                    <input type="checkbox" id="isDownhill" name="instalacoes" value="4" />
+                    <label for="isSkateshop">SkateShop</label>
+                    <input type="checkbox" id="isSkateshop" name="instalacoes" value="5" />
+                </div>
+                <div class="form-group">
+                    <label for="image">Spot Pictures:</span>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*" />
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Add Spot</button>
+            </div>
+          </div>
         </div>
-    </div>
-
-
-
+      </div>
 
     <!--INICIO DO SCRIPT-->
 
@@ -164,13 +177,63 @@
         function abrirNovoSpot() {
             // fecharContato();
             ocultarMenuLateral();
-            document.getElementById("newSpot").style.top = "13%";
+            //document.getElementById("newSpot").style.top = "13%";
+            $("#newSpot").modal({
+                backdrop: "static",
+                keyboard: true
+            });
         }
 
         function fecharNovospot() {
-            document.getElementById("newSpot").style.top = "";
+            //document.getElementById("newSpot").style.top = "";
+            $("#newSpot").modal("hide");
         }
 
+        $("#formAdd").validate({
+            rules: {
+                nome: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 100
+                },
+                idtipo: {
+                    required: true
+                },
+                endereco: {
+                    required: true,
+                    minlength: 5,
+                    maxlength: 100
+                },
+                bairro: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                image: {
+                    required: true
+                }
+            },
+            submitHandler: function (form) {
+                
+                var formData = new FormData(form);
+
+                $.ajax({
+                    url: "api/local/criar",
+                    method: "post",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+                        fecharNovospot();
+                        alert("Criado com sucesso!");
+                    },
+                    error: function () {
+                        alert("Erro!");
+                    }
+                });
+
+            }
+        });
     </script>
 
     <!--Script menu lateral-->
@@ -183,8 +246,6 @@
             document.getElementById("menuLateral").style.left = "";
         }
     </script>
-
-    
 
     <!--Script cadastro
     <script type="text/javascript">
@@ -259,12 +320,17 @@
                 marker.on('click', onMarkerClick);
             }*/
 
-            /*map.on('click', function (e) {
-                var popup = L.popup()
-                    .setLatLng([e.latlng.lat, e.latlng.lng])
-                    .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
-                    .openOn(map);
-            });*/
+            map.on('click', function (e) {
+                //var popup = L.popup()
+                //    .setLatLng([e.latlng.lat, e.latlng.lng])
+                //    .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
+                //    .openOn(map);
+
+                document.getElementById("latitude").value = e.latlng.lat;
+                document.getElementById("longitude").value = e.latlng.lng;
+
+                abrirNovoSpot();
+            });
         }
 
         if (location.href.indexOf("https://") === 0) { // || (location.href.indexOf("localhost") >= 0) {

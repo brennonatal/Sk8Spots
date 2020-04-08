@@ -66,7 +66,7 @@ body {
     background-color: rgb(233, 4, 183);
 }
 
-#cadastro, #contato, #newSpot {
+#cadastro, #contato {
     position: fixed;
     z-index: 2;
     top: -600px;
