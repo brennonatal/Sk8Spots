@@ -100,7 +100,7 @@ body {
 }
 
 form label{
-    color: rgb(255, 255, 255);
+    color: black;
     text-align: left;
     font-size: 16px;
     
@@ -109,12 +109,12 @@ form label{
 form h2{
     font-weight: bold; 
     text-align: center;
-    color: white; 
+    color: black; 
 }
 
 form input{
     width: max-content;
-    margin: 10px 0;
+    margin: 0 0;
     border: none;
     border-radius: 2px;
 }
@@ -129,9 +129,6 @@ form button{
     margin-top: 10px;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
-    text-align: center;
-    justify-self: center;
-    justify-content: center;
    
 }
 
@@ -139,7 +136,7 @@ form button{
 span{
     font-size: 22px;
     font-weight: bold;
-    color: white;
+    color: black;
     text-align: center;
     
 }
