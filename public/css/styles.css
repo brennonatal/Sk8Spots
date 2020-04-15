@@ -62,7 +62,7 @@ body {
     height: auto;
 }
 
-.btn:hover {
+.btn-outline:hover {
     background-color: rgb(233, 4, 183);
 }
 
@@ -100,7 +100,7 @@ body {
 }
 
 form label{
-    color: black;
+    color: white;
     text-align: left;
     font-size: 16px;
     
@@ -109,7 +109,7 @@ form label{
 form h2{
     font-weight: bold; 
     text-align: center;
-    color: black; 
+    color: rgb(255, 255, 255); 
 }
 
 form input{
@@ -118,7 +118,6 @@ form input{
     border: none;
     border-radius: 2px;
 }
-
 
 form button{
     background-color: rgb(233, 4, 183);
@@ -136,7 +135,7 @@ form button{
 span{
     font-size: 22px;
     font-weight: bold;
-    color: black;
+    color: rgb(255, 255, 255);
     text-align: center;
     
 }
@@ -150,5 +149,20 @@ textarea{
 
 .icons{
     width: 22px;
+}
+
+.modal-body{
+    background-color: rgba(64, 0, 138 , 0.95);
+    margin: 0 0;
+}
+
+.modal-header, .modal-footer{
+    background-color: rgb(40, 0, 85);
+    margin: 0 0;
+}
+
+.modal-footer .btn-default{
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
 }
 
