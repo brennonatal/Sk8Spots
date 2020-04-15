@@ -1,4 +1,5 @@
 ﻿import express = require("express");
+import multer = require("multer");
 import wrap = require("express-async-error-wrapper");
 import Local = require("../../models/local");
 
@@ -20,10 +21,16 @@ router.get("/obter", wrap(async (req: express.Request, res: express.Response) =>
 	res.json(local);
 }));
 
-router.post("/criar", wrap(async (req: express.Request, res: express.Response) => {
+router.post("/criar", multer().single("image"), wrap(async (req: express.Request, res: express.Response) => {
 	let local = req.body as Local;
 
-	let resultado = await Local.criar(local);
+	if (!req["file"] || !req["file"].buffer || !req["file"].size || req["file"].size > (500 * 1024)) {
+		res.statusCode = 400;
+		res.json("Imagem inválida!");
+		return;
+	}
+
+	let resultado = await Local.criar(local, req["file"]);
 
 	if (resultado) {
 		res.statusCode = 400;

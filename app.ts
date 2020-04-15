@@ -89,7 +89,7 @@ app.use((req: express.Request, res: express.Response, next: NextFunction) => {
 
 // Cadastros simples
 app.use("/", require("./routes/home"));
-app.use("/api/tipoLocal", require("./routes/api/tipoLocal"));
+app.use("/api/local", require("./routes/api/local"));
 
 // Depois de registrados todos os caminhos das rotas e seus
 // tratadores, registramos os tratadores que serão chamados

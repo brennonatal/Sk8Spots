@@ -225,7 +225,9 @@
                     processData: false,
                     success: function () {
                         fecharNovospot();
+                        form.reset();
                         alert("Criado com sucesso!");
+                        location.reload();
                     },
                     error: function () {
                         alert("Erro!");
@@ -278,6 +280,7 @@
 
     <!--Script mapa-->
     <script type="text/javascript">
+        var locais = <%- locais %>;
         var map = L.map("map", {
             zoomControl: false
         });
@@ -298,27 +301,25 @@
             }).addTo(map);
 
             var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
-                icons = [null];
-            for (i = 2; i >= 1; i--) {
-                icons.push(L.icon({
-                    iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-iconi-2x.png" : "/lib/leaflet/js/images/" + i + "-iconi.png"),
-                    iconSize: [32, 32],
-                    iconAnchor: [24, 24],
-                    popupAnchor: [0, -39]
-                }));
-            }
+                icons = [];
+            icons.push(L.icon({
+                iconUrl: (highDpi ? "/lib/leaflet/js/images/marker-icon-2x.png" : "/lib/leaflet/js/images/marker-icon.png"),
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [0, 0]
+            }));
 
-            /*for (var i = 0; i < timeouts.length; i++) {
-                var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao],
+            for (var i = 0; i < locais.length; i++) {
+                var marker = L.marker([locais[i].latitude, locais[i].longitude],
                     {
-                    icon: icons[timeouts[i].id_tipo_local]
+                    icon: icons[0]
                     })
                     .addTo(map);
-                marker.timeout = timeouts[i];
-                timeouts[i].marker = marker;
-                timeouts[i].indice = i;
-                marker.on('click', onMarkerClick);
-            }*/
+                marker.local = locais[i];
+                locais[i].marker = marker;
+                locais[i].indice = i;
+                //marker.on('click', onMarkerClick);
+            }
 
             map.on('click', function (e) {
                 //var popup = L.popup()
