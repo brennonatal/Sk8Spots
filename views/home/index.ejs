@@ -289,6 +289,15 @@
             position: "topright"
         }).addTo(map);
 
+        function onMarkerClick() {
+            var local = this.local;
+            
+            var popup = L.popup()
+                .setLatLng([local.latitude, local.longitude])
+                .setContent('<p>' + local.nome + '</p>')
+                .openOn(map);
+        }
+
         function iniciarMapa(lat, lng) {
             var latlng = new L.LatLng(lat, lng);
             map.setView(latlng, 14);
@@ -301,24 +310,54 @@
             }).addTo(map);
 
             var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
-                icons = [];
-            icons.push(L.icon({
-                iconUrl: (highDpi ? "/lib/leaflet/js/images/marker-icon-2x.png" : "/lib/leaflet/js/images/marker-icon.png"),
-                iconSize: [25, 41],
-                iconAnchor: [12, 41],
-                popupAnchor: [0, 0]
-            }));
+                icons = [
+                    null,
+
+                    L.icon({
+                        iconUrl: (highDpi ? "/images/markers/park2_marker@2x.png" : "/images/markers/park2_marker.png"),
+                        iconSize: [25, 34],
+                        iconAnchor: [12, 34],
+                        popupAnchor: [0, 0]
+                    }),
+
+                    L.icon({
+                        iconUrl: (highDpi ? "/images/markers/bowl_marker@2x.png" : "/images/markers/bowl_marker.png"),
+                        iconSize: [25, 34],
+                        iconAnchor: [12, 34],
+                        popupAnchor: [0, 0]
+                    }),
+
+                    L.icon({
+                        iconUrl: (highDpi ? "/images/markers/street_marker@2x.png" : "/images/markers/street_marker.png"),
+                        iconSize: [25, 34],
+                        iconAnchor: [12, 34],
+                        popupAnchor: [0, 0]
+                    }),
+
+                    L.icon({
+                        iconUrl: (highDpi ? "/images/markers/down_marker@2x.png" : "/images/markers/down_marker.png"),
+                        iconSize: [25, 34],
+                        iconAnchor: [12, 34],
+                        popupAnchor: [0, 0]
+                    }),
+
+                    L.icon({
+                        iconUrl: (highDpi ? "/images/markers/shop_marker@2x.png" : "/images/markers/shop_marker.png"),
+                        iconSize: [25, 34],
+                        iconAnchor: [12, 34],
+                        popupAnchor: [0, 0]
+                    })
+                ];
 
             for (var i = 0; i < locais.length; i++) {
-                var marker = L.marker([locais[i].latitude, locais[i].longitude],
-                    {
-                    icon: icons[0]
+                var marker = L.marker([locais[i].latitude, locais[i].longitude], {
+                        icon: icons[locais[i].idtipo]
                     })
                     .addTo(map);
                 marker.local = locais[i];
                 locais[i].marker = marker;
                 locais[i].indice = i;
-                //marker.on('click', onMarkerClick);
+                marker.on('click', onMarkerClick);
             }
 
             map.on('click', function (e) {
