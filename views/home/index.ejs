@@ -55,9 +55,7 @@
             SkateShops</button>
         <!--
         <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirCadastro()"><i
-                class="fa fa-sign-in"></i> Sign in</button>
-        <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirContato()"><i
-                class="fa fa-envelope"></i> Contact Us</button> -->
+                class="fa fa-sign-in"></i> Sign in</button>  -->
     </div>
 
     <!--Sign in form
@@ -85,90 +83,86 @@
         </div>
     </div>    -->
 
-    <!--Contate-nos
-    <div id="contato" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
-        <div class="conteudo-cadastro">
+    <!--Spot Details-->
+    <div  id="Spot" class="conteudo-cadastro" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
+        <div  class="conteudo-cadastro">
+            <button type="button" class="close" onclick="fecharSpot()">&times;</button>
+            <h2 id="spotName">Spot Name</h2>
+            <p><img id="spotImage" /></p>
+            <p id="spotAddress"></p><p id="spotBairro"></p>
+            <ul id="facilities">
+                
+            </ul>
 
-            <button type="button" class="close" onclick="fecharContato()">&times;</button>
-            <form action="">
-                <h2>Contact Us</h2>
-                <div>
-                    <label for="contactName">Full Name:</label>
-                    <input type="text" id="contactFname" placeholder="First Name"> </br>
-                    <label for="contactEmail">Email Address</label>
-                    <input type="email" id="contactEmail" placeholder="Email" spellcheck="false"> </br>
-                    <label for="contactPhone">Phone Number</label>
-                    <input type="tel" id="contactPhone" placeholder="Phone Number">
-                </div>
-                <span>Message:</span>
-                <div>
-                    <textarea rows="4"></textarea>
-                </div>
-                <button type="submit" href="/">Submit</button>
-            </form>
 
         </div>
-    </div>   -->
+    </div>
 
     <!--Add new Spot-->
     <div class="modal fade" tabindex="-1" role="dialog" id="newSpot">
         <div class="modal-dialog">
-          <form class="modal-content" id="formAdd">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h2 class="modal-title">Add New Spot</h2>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" id="latitude" name="latitude" />
-                <input type="hidden" id="longitude" name="longitude" />
-                <div class="form-group">
-                    <label for="nome">Spot Name:</label>
-                    <input type="text" class="form-control" id="nome" name="nome" />
+            <form class="modal-content" id="formAdd">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title">Add New Spot</h2>
                 </div>
-                <div class="form-group">
-                    <label for="idtipo">Spot Kind:</label>
-                    <select id="idtipo" class="form-control" name="idtipo" size="1">
-                        <option selected="selected" value="0">Selecione...</option>
-                        <option value="1">SkatePark</option>
-                        <option value="2">Bowl</option>
-                        <option value="3">StreetSpot</option>
-                        <option value="4">DownHill</option>
-                        <option value="5">SkateShop</option>
-                    </select>
+                <div class="modal-body">
+                    <input type="hidden" id="latitude" name="latitude" />
+                    <input type="hidden" id="longitude" name="longitude" />
+                    <div class="form-group">
+                        <label for="nome">Spot Name:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" />
+                    </div>
+                    <div class="form-group">
+                        <label for="idtipo">Spot Kind:</label>
+                        <select id="idtipo" class="form-control" name="idtipo" size="1">
+                            <option selected="selected" value="0">Selecione...</option>
+                            <option value="1">SkatePark</option>
+                            <option value="2">Bowl</option>
+                            <option value="3">StreetSpot</option>
+                            <option value="4">DownHill</option>
+                            <option value="5">SkateShop</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco">Spot Address:</label>
+                        <input type="text" class="form-control" id="endereco" name="endereco"
+                            placeholder="Ex: Rua Jaraguá, 627" maxlength="100" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bairro">Spot Neighborhood:</label>
+                        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Ex: Bom Retiro"
+                            maxlength="50" />
+                    </div>
+                    <div class="form-group">
+                        <span>Spot Facilities:</span> <br />
+                        <label for="isSkatepark">SkatePark</label>
+                        <input type="checkbox" id="isSkatepark" name="instalacoes" value="1" />
+                        <label for="isBowl">Bowl</label>
+                        <input type="checkbox" id="isBowl" name="instalacoes" value="2" />
+                        <label for="isStreetspot">StreetSpot</label>
+                        <input type="checkbox" id="isStreetspot" name="instalacoes" value="3" />
+                        <label for="isDownhill">DownHill</label>
+                        <input type="checkbox" id="isDownhill" name="instalacoes" value="4" />
+                        <label for="isSkateshop">SkateShop</label>
+                        <input type="checkbox" id="isSkateshop" name="instalacoes" value="5" />
+                    </div>
+                    <div class="form-group">
+                        <label for="image"><span>Pictures:</span> </label>
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*" />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="endereco">Spot Address:</label>
-                    <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Ex: Rua Jaraguá, 627" maxlength="100" />
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Add Spot</button>
                 </div>
-                <div class="form-group">
-                    <label for="bairro">Spot Neighborhood:</label>
-                    <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Ex: Bom Retiro" maxlength="50" />
-                </div>
-                <div class="form-group">
-                    <span>Spot Facilities:</span> <br />
-                    <label for="isSkatepark">SkatePark</label>
-                    <input type="checkbox" id="isSkatepark" name="instalacoes" value="1" />
-                    <label for="isBowl">Bowl</label>
-                    <input type="checkbox" id="isBowl" name="instalacoes" value="2" />
-                    <label for="isStreetspot">StreetSpot</label>
-                    <input type="checkbox" id="isStreetspot" name="instalacoes" value="3" />
-                    <label for="isDownhill">DownHill</label>
-                    <input type="checkbox" id="isDownhill" name="instalacoes" value="4" />
-                    <label for="isSkateshop">SkateShop</label>
-                    <input type="checkbox" id="isSkateshop" name="instalacoes" value="5" />
-                </div>
-                <div class="form-group">
-                    <label for="image"><span>Pictures:</span> </label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*" />
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Add Spot</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+    </div>
+
+
+
 
     <!--INICIO DO SCRIPT-->
 
@@ -214,7 +208,7 @@
                 }
             },
             submitHandler: function (form) {
-                
+
                 var formData = new FormData(form);
 
                 $.ajax({
@@ -264,19 +258,19 @@
 
     </script>  -->
 
-    <!--Script contate-nos
+    <!--Script PopUp Spot -->
     <script type="text/javascript">
-        function abrirContato() {
+        function abrirSpot() {
             fecharCadastro();
             ocultarMenuLateral();
             fecharNovospot();
-            document.getElementById("contato").style.top = "13%";
+            document.getElementById("Spot").style.top = "13%";
         }
 
-        function fecharContato() {
-            document.getElementById("contato").style.top = "";
+        function fecharSpot() {
+            document.getElementById("Spot").style.top = "";
         }
-    </script>  -->
+    </script>
 
     <!--Script mapa-->
     <script type="text/javascript">
@@ -291,11 +285,24 @@
 
         function onMarkerClick() {
             var local = this.local;
+
+            var modalSpot = document.getElementById("Spot");
+            modalSpot.style.display = "";
+            modalSpot.style.backgroundColor = "red";
             
-            var popup = L.popup()
-                .setLatLng([local.latitude, local.longitude])
-                .setContent('<p>' + local.nome + '</p>')
-                .openOn(map);
+            var spotName = document.getElementById("spotName");
+            spotName.textContent = local.nome;
+
+            var spotImage = document.getElementById("spotImage");
+            spotImage.src = "/locais/" + local.id + ".jpg";
+
+            var spotAddress = document.getElementById("spotAddress");
+            spotAddress.textContent = local.endereco;
+
+            var spotBairro = document.getElementById("spotBairro");
+            spotBairro.textContent = local.bairro;
+
+           
         }
 
         function iniciarMapa(lat, lng) {
@@ -317,42 +324,42 @@
                         iconUrl: (highDpi ? "/images/markers/park2_marker@2x.png" : "/images/markers/park2_marker.png"),
                         iconSize: [25, 34],
                         iconAnchor: [12, 34],
-                        popupAnchor: [0, 0]
+                        popupAnchor: [0, 25]
                     }),
 
                     L.icon({
                         iconUrl: (highDpi ? "/images/markers/bowl_marker@2x.png" : "/images/markers/bowl_marker.png"),
                         iconSize: [25, 34],
                         iconAnchor: [12, 34],
-                        popupAnchor: [0, 0]
+                        popupAnchor: [0, 25]
                     }),
 
                     L.icon({
                         iconUrl: (highDpi ? "/images/markers/street_marker@2x.png" : "/images/markers/street_marker.png"),
                         iconSize: [25, 34],
                         iconAnchor: [12, 34],
-                        popupAnchor: [0, 0]
+                        popupAnchor: [0, 25]
                     }),
 
                     L.icon({
                         iconUrl: (highDpi ? "/images/markers/down_marker@2x.png" : "/images/markers/down_marker.png"),
                         iconSize: [25, 34],
                         iconAnchor: [12, 34],
-                        popupAnchor: [0, 0]
+                        popupAnchor: [0, 25]
                     }),
 
                     L.icon({
                         iconUrl: (highDpi ? "/images/markers/shop_marker@2x.png" : "/images/markers/shop_marker.png"),
                         iconSize: [25, 34],
                         iconAnchor: [12, 34],
-                        popupAnchor: [0, 0]
+                        popupAnchor: [0, 25]
                     })
                 ];
 
             for (var i = 0; i < locais.length; i++) {
                 var marker = L.marker([locais[i].latitude, locais[i].longitude], {
-                        icon: icons[locais[i].idtipo]
-                    })
+                    icon: icons[locais[i].idtipo]
+                })
                     .addTo(map);
                 marker.local = locais[i];
                 locais[i].marker = marker;
