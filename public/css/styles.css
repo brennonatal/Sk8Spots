@@ -151,6 +151,9 @@ textarea{
     width: 22px;
 }
 
+.modal {
+    color: white;
+}
 
 .modal-body{
     background-color: rgba(64, 0, 138 , 0.95);
@@ -159,7 +162,7 @@ textarea{
 
 .modal-header, .modal-footer{
     background-color: rgb(40, 0, 85);
-    margin: 0 0;
+    border: 0;
 }
 
 .modal-footer .btn-default{
@@ -167,3 +170,6 @@ textarea{
     color: white;
 }
 
+#spotImage {
+    max-width: 100%;
+}

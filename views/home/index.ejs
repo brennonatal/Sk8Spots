@@ -12,8 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
     <!--ICONES ICOMOON-->
-    <link rel="stylesheet" href="lib/icomoon_1/demo-files/demo.css">
-    <link rel="stylesheet" href="lib/icomoon_1/style.css">
+    <link rel="stylesheet" href="lib/icomoon_1/style.css" />
 
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-1.0.22.min.css" />
     <link rel="stylesheet" href="lib/font-awesome/css/font-awesome-1.0.2.min.css" />
@@ -84,17 +83,24 @@
     </div>    -->
 
     <!--Spot Details-->
-    <div  id="Spot" class="conteudo-cadastro" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
-        <div  class="conteudo-cadastro">
-            <button type="button" class="close" onclick="fecharSpot()">&times;</button>
-            <h2 id="spotName">Spot Name</h2>
-            <p><img id="spotImage" /></p>
-            <p id="spotAddress"></p><p id="spotBairro"></p>
-            <ul id="facilities">
-                
-            </ul>
-
-
+    <div class="modal fade" tabindex="-1" role="dialog" id="Spot">
+        <div class="modal-dialog">
+            <form class="modal-content" id="formAdd">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title" id="spotName"></h2>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center"><img id="spotImage" /></p>
+                    <p id="spotAddress"></p>
+                    <p id="spotBairro"></p>
+                    <ul id="facilities">
+                        
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
         </div>
     </div>
 
@@ -103,8 +109,7 @@
         <div class="modal-dialog">
             <form class="modal-content" id="formAdd">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h2 class="modal-title">Add New Spot</h2>
                 </div>
                 <div class="modal-body">
@@ -137,16 +142,15 @@
                     </div>
                     <div class="form-group">
                         <span>Spot Facilities:</span> <br />
-                        <label for="isSkatepark">SkatePark</label>
-                        <input type="checkbox" id="isSkatepark" name="instalacoes" value="1" />
-                        <label for="isBowl">Bowl</label>
-                        <input type="checkbox" id="isBowl" name="instalacoes" value="2" />
-                        <label for="isStreetspot">StreetSpot</label>
-                        <input type="checkbox" id="isStreetspot" name="instalacoes" value="3" />
-                        <label for="isDownhill">DownHill</label>
-                        <input type="checkbox" id="isDownhill" name="instalacoes" value="4" />
-                        <label for="isSkateshop">SkateShop</label>
-                        <input type="checkbox" id="isSkateshop" name="instalacoes" value="5" />
+                        <div class="text-center">
+                            <div class="btn-group" role="group" id="btnGroupFacilities">
+                                <label class="btn btn-default"><input type="checkbox" id="isSkatepark" name="instalacoes" value="1" /> SkatePark</label>
+                                <label class="btn btn-default"><input type="checkbox" id="isBowl" name="instalacoes" value="2" /> StreetSpot</label>
+                                <label class="btn btn-default"><input type="checkbox" id="isStreetspot" name="instalacoes" value="3" /> Bowl</label>
+                                <label class="btn btn-default"><input type="checkbox" id="isDownhill" name="instalacoes" value="4" /> DownHill</label>
+                                <label class="btn btn-default"><input type="checkbox" id="isSkateshop" name="instalacoes" value="5" /> SkateShop</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="image"><span>Pictures:</span> </label>
@@ -159,9 +163,6 @@
                 </div>
         </div>
     </div>
-    </div>
-
-
 
 
     <!--INICIO DO SCRIPT-->
@@ -275,6 +276,7 @@
     <!--Script mapa-->
     <script type="text/javascript">
         var locais = <%- locais %>;
+        var btnGroupFacilities = document.getElementById("btnGroupFacilities");
         var map = L.map("map", {
             zoomControl: false
         });
@@ -287,8 +289,6 @@
             var local = this.local;
 
             var modalSpot = document.getElementById("Spot");
-            modalSpot.style.display = "";
-            modalSpot.style.backgroundColor = "red";
             
             var spotName = document.getElementById("spotName");
             spotName.textContent = local.nome;
@@ -302,7 +302,15 @@
             var spotBairro = document.getElementById("spotBairro");
             spotBairro.textContent = local.bairro;
 
-           
+            var facilities = local.nometipos.split(",");
+            for (var i = 0; i < facilities.length; i++) {
+                
+            }
+
+            $(modalSpot).modal({
+                backdrop: "static",
+                keyboard: true
+            });
         }
 
         function iniciarMapa(lat, lng) {
@@ -387,6 +395,17 @@
         } else {
             iniciarMapa(-23.611178, -46.696075);
         }
+
+        function adjustBtnGroupFacilities() {
+            var className = (window.innerWidth < 768 ? "btn-group-vertical" : "btn-group");
+            if (btnGroupFacilities.className !== className) {
+                btnGroupFacilities.className = className;
+            }
+        }
+
+        window.onresize = adjustBtnGroupFacilities;
+
+        adjustBtnGroupFacilities();
 
     </script>
 </body>
