@@ -92,11 +92,13 @@
                 </div>
                 <div class="modal-body">
                     <p class="text-center"><img id="spotImage" /></p>
-                    <p id="spotAddress"></p>
-                    <p id="spotBairro"></p>
-                    <ul id="facilities">
-                        
-                    </ul>
+
+                    <div style="display: inline;"><i class="fa fa-map-marker" id="location" aria-hidden="true"></i>
+                    <p id="spotAddress"></p></div>
+                    <div class="faci">
+                        <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Facilities:</h3>
+                        <ul id="facilities"></ul>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -296,16 +298,25 @@
             var spotImage = document.getElementById("spotImage");
             spotImage.src = "/locais/" + local.id + ".jpg";
 
-            var spotAddress = document.getElementById("spotAddress");
-            spotAddress.textContent = local.endereco;
+            //var location = document.getElementById("location");
 
-            var spotBairro = document.getElementById("spotBairro");
-            spotBairro.textContent = local.bairro;
+            var spotAddress = document.getElementById("spotAddress");
+            spotAddress.textContent = "Address: "+local.endereco+" - "+local.bairro;
+
+            
+            var item;
+            var list = document.getElementById("facilities");
 
             var facilities = local.nometipos.split(",");
+            //console.log("facilities: ", facilities);
+            //console.log("Nomes:  ", local.nometipos);
             for (var i = 0; i < facilities.length; i++) {
-                
+                facilities[i].textContent = local.nometipos; 
+                item = document.createElement("li");  
+                item.innerHTML = facilities[i];
+                list.appendChild(item);             
             }
+
 
             $(modalSpot).modal({
                 backdrop: "static",
