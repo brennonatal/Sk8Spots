@@ -41,7 +41,7 @@
         <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i
                 class="fa fa-arrow-left" style="margin-right: 95px;"></i></button>
 
-        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="abrirNovoSpot()"><i
+        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="openHowTo()"><i
                 class="fa fa-plus"></i></button>
 
         <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_skatepark"></i>
@@ -166,6 +166,33 @@
         </div>
     </div>
 
+    <!--HOW TO ADD NEW SPOT?-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="howTo">
+        <div class="modal-dialog">
+            <form class="modal-content" id="formAdd">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title">Adding new spot</h2>
+                </div>
+                <div class="modal-body">
+                    <h3>Be a collaborative</h3>
+                    <p>Help us to grow our community by adding new Sk8Spots to the map.</p>
+                   <h3>How can I add a new Spot?</h3>
+                   <ol>
+                        <li>In order to do it, you just have to click on the map where the spot is located at, it's preferable to be at your spot. </li>
+                        <li>That way you can take great pictures to show others how it looks.</li>
+                        <li>So let's get a move on, take your board and go unlock your first Sk8Spot!</li>
+                    </ol>
+                   <p></p>
+            
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    
+                </div>
+        </div>
+    </div>
+
 
     <!--INICIO DO SCRIPT-->
 
@@ -184,6 +211,21 @@
         function fecharNovospot() {
             //document.getElementById("newSpot").style.top = "";
             $("#newSpot").modal("hide");
+        }
+
+        function openHowTo() {
+            // fecharContato();
+            ocultarMenuLateral();
+            //document.getElementById("newSpot").style.top = "13%";
+            $("#howTo").modal({
+                backdrop: "static",
+                keyboard: true
+            });
+        }
+
+        function closeHowTo() {
+            //document.getElementById("newSpot").style.top = "";
+            $("#howTo").modal("hide");
         }
 
         $("#formAdd").validate({
