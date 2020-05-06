@@ -359,6 +359,8 @@
 
             var item;
             var list = document.getElementById("facilities");
+            while (list.firstChild)
+                list.removeChild(list.firstChild);
 
             var facilities = local.nometipos.split(",");
             //console.log("facilities: ", facilities);
