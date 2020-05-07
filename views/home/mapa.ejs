@@ -1,0 +1,108 @@
+<script type="text/javascript">
+    var locais = <%- locais %>;
+    var btnGroupFacilities = document.getElementById("btnGroupFacilities");
+    var map = L.map("map", {
+        zoomControl: false
+    });
+
+    L.control.zoom({
+        position: "topright"
+    }).addTo(map);
+
+   
+
+    function iniciarMapa(lat, lng) {
+        var latlng = new L.LatLng(lat, lng);
+        map.setView(latlng, 14);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            subdomains: ['a', 'b', 'c'],
+            center: [latlng],
+            minZoom: 10,
+            zoom: 14
+        }).addTo(map);
+
+        var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
+            icons = [
+                null,
+
+                L.icon({
+                    iconUrl: (highDpi ? "/images/markers/park2_marker@2x.png" : "/images/markers/park2_marker.png"),
+                    iconSize: [25, 34],
+                    iconAnchor: [12, 34],
+                    popupAnchor: [0, 25]
+                }),
+
+                L.icon({
+                    iconUrl: (highDpi ? "/images/markers/bowl_marker@2x.png" : "/images/markers/bowl_marker.png"),
+                    iconSize: [25, 34],
+                    iconAnchor: [12, 34],
+                    popupAnchor: [0, 25]
+                }),
+
+                L.icon({
+                    iconUrl: (highDpi ? "/images/markers/street_marker@2x.png" : "/images/markers/street_marker.png"),
+                    iconSize: [25, 34],
+                    iconAnchor: [12, 34],
+                    popupAnchor: [0, 25]
+                }),
+
+                L.icon({
+                    iconUrl: (highDpi ? "/images/markers/down_marker@2x.png" : "/images/markers/down_marker.png"),
+                    iconSize: [25, 34],
+                    iconAnchor: [12, 34],
+                    popupAnchor: [0, 25]
+                }),
+
+                L.icon({
+                    iconUrl: (highDpi ? "/images/markers/shop_marker@2x.png" : "/images/markers/shop_marker.png"),
+                    iconSize: [25, 34],
+                    iconAnchor: [12, 34],
+                    popupAnchor: [0, 25]
+                })
+            ];
+
+        for (var i = 0; i < locais.length; i++) {
+            var marker = L.marker([locais[i].latitude, locais[i].longitude], {
+                icon: icons[locais[i].idtipo]
+            })
+                .addTo(map);
+            marker.local = locais[i];
+            locais[i].marker = marker;
+            locais[i].indice = i;
+            marker.on('click', onMarkerClick);
+        }
+
+        map.on('click', function (e) {
+            //var popup = L.popup()
+            //    .setLatLng([e.latlng.lat, e.latlng.lng])
+            //    .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
+            //    .openOn(map);
+
+            document.getElementById("latitude").value = e.latlng.lat;
+            document.getElementById("longitude").value = e.latlng.lng;
+
+            abrirNovoSpot();
+        });
+    }
+
+    if (location.href.indexOf("https://") === 0) { // || (location.href.indexOf("localhost") >= 0) {
+        navigator.geolocation.getCurrentPosition(function (location) {
+            iniciarMapa(location.coords.latitude, location.coords.longitude);
+        });
+    } else {
+        iniciarMapa(-23.611178, -46.696075);
+    }
+
+    function adjustBtnGroupFacilities() {
+        var className = (window.innerWidth < 768 ? "btn-group-vertical" : "btn-group");
+        if (btnGroupFacilities.className !== className) {
+            btnGroupFacilities.className = className;
+        }
+    }
+
+    window.onresize = adjustBtnGroupFacilities;
+
+    adjustBtnGroupFacilities();
+
+</script>

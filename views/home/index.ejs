@@ -83,100 +83,10 @@
     </div>    -->
 
     <!--Spot Details-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="Spot">
-        <div class="modal-dialog">
-            <form class="modal-content" id="formAdd">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h2 class="modal-title" id="spotName"></h2>
-                </div>
-                <div class="modal-body">
-                    <p class="text-center"><img id="spotImage" /></p>
-
-
-                    <p>
-                        <i class="fa fa-map-marker" aria-hidden="true" style="font-size: 28px;"></i>
-                        <span id="spotAddress"></span>
-                    </p>
-                  
-
-                    <div class="faci">
-                        <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Facilities:</h3>
-                        <ul id="facilities"></ul>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-        </div>
-    </div>
+    <%- include("modalSpot") %>
 
     <!--Add new Spot-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="newSpot">
-        <div class="modal-dialog">
-            <form class="modal-content" id="formAdd">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h2 class="modal-title">Add New Spot</h2>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="latitude" name="latitude" />
-                    <input type="hidden" id="longitude" name="longitude" />
-                    <div class="form-group">
-                        <label for="nome">Spot Name:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" />
-                    </div>
-                    <div class="form-group">
-                        <label for="idtipo">Spot Kind:</label>
-                        <select id="idtipo" class="form-control" name="idtipo" size="1">
-                            <option selected="selected" value="0">Selecione...</option>
-                            <option value="1">SkatePark</option>
-                            <option value="2">Bowl</option>
-                            <option value="3">StreetSpot</option>
-                            <option value="4">DownHill</option>
-                            <option value="5">SkateShop</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="endereco">Spot Address:</label>
-                        <input type="text" class="form-control" id="endereco" name="endereco"
-                            placeholder="Ex: Rua Jaraguá, 627" maxlength="100" />
-                    </div>
-                    <div class="form-group">
-                        <label for="bairro">Spot Neighborhood:</label>
-                        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Ex: Bom Retiro"
-                            maxlength="50" />
-                    </div>
-                    <div class="form-group">
-                        <span>Spot Facilities:</span> <br />
-                        <div class="text-center">
-                            <div class="btn-group" role="group" id="btnGroupFacilities">
-                                <label class="btn btn-default"><input type="checkbox" id="isSkatepark"
-                                        name="instalacoes" value="1" /> SkatePark</label>
-                                <label class="btn btn-default"><input type="checkbox" id="isBowl" name="instalacoes"
-                                        value="2" /> StreetSpot</label>
-                                <label class="btn btn-default"><input type="checkbox" id="isStreetspot"
-                                        name="instalacoes" value="3" /> Bowl</label>
-                                <label class="btn btn-default"><input type="checkbox" id="isDownhill" name="instalacoes"
-                                        value="4" /> DownHill</label>
-                                <label class="btn btn-default"><input type="checkbox" id="isSkateshop"
-                                        name="instalacoes" value="5" /> SkateShop</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="image"><span>Pictures:</span> </label>
-                        <input type="file" class="form-control" id="image" name="image" accept="image/*" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Add Spot</button>
-                </div>
-        </div>
-    </div>
+    <%- include("addSpot") %>
 
     <!--HOW TO ADD NEW SPOT?-->
     <div class="modal fade" tabindex="-1" role="dialog" id="howTo">
@@ -209,21 +119,16 @@
 
     <!--INICIO DO SCRIPT-->
 
-    <!--Script New Spot-->
+
+
+    <!--Script menu lateral-->
     <script type="text/javascript">
-        function abrirNovoSpot() {
-            // fecharContato();
-            ocultarMenuLateral();
-            //document.getElementById("newSpot").style.top = "13%";
-            $("#newSpot").modal({
-                backdrop: "static",
-                keyboard: true
-            });
+        function mostrarMenuLateral() {
+            document.getElementById("menuLateral").style.left = "0px";
         }
 
-        function fecharNovospot() {
-            //document.getElementById("newSpot").style.top = "";
-            $("#newSpot").modal("hide");
+        function ocultarMenuLateral() {
+            document.getElementById("menuLateral").style.left = "";
         }
 
         function openHowTo() {
@@ -241,64 +146,6 @@
             $("#howTo").modal("hide");
         }
 
-        $("#formAdd").validate({
-            rules: {
-                nome: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 100
-                },
-                idtipo: {
-                    required: true
-                },
-                endereco: {
-                    required: true,
-                    minlength: 5,
-                    maxlength: 100
-                },
-                bairro: {
-                    required: true,
-                    minlength: 3,
-                    maxlength: 50
-                },
-                image: {
-                    required: true
-                }
-            },
-            submitHandler: function (form) {
-
-                var formData = new FormData(form);
-
-                $.ajax({
-                    url: "api/local/criar",
-                    method: "post",
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function () {
-                        fecharNovospot();
-                        form.reset();
-                        alert("Criado com sucesso!");
-                        location.reload();
-                    },
-                    error: function () {
-                        alert("Erro!");
-                    }
-                });
-
-            }
-        });
-    </script>
-
-    <!--Script menu lateral-->
-    <script type="text/javascript">
-        function mostrarMenuLateral() {
-            document.getElementById("menuLateral").style.left = "0px";
-        }
-
-        function ocultarMenuLateral() {
-            document.getElementById("menuLateral").style.left = "";
-        }
     </script>
 
     <!--Script cadastro
@@ -316,163 +163,8 @@
 
     </script>  -->
 
-    <!--Script PopUp Spot -->
-    <script type="text/javascript">
-        function abrirSpot() {
-            fecharCadastro();
-            ocultarMenuLateral();
-            fecharNovospot();
-            document.getElementById("Spot").style.top = "13%";
-        }
+    <%- include("mapa") %>
 
-        function fecharSpot() {
-            document.getElementById("Spot").style.top = "";
-        }
-    </script>
-
-    <!--Script mapa-->
-    <script type="text/javascript">
-        var locais = <%- locais %>;
-        var btnGroupFacilities = document.getElementById("btnGroupFacilities");
-        var map = L.map("map", {
-            zoomControl: false
-        });
-
-        L.control.zoom({
-            position: "topright"
-        }).addTo(map);
-
-        function onMarkerClick() {
-            var local = this.local;
-
-            var modalSpot = document.getElementById("Spot");
-
-            var spotName = document.getElementById("spotName");
-            spotName.textContent = local.nome;
-
-            var spotImage = document.getElementById("spotImage");
-            spotImage.src = "/locais/" + local.id + ".jpg";
-
-            var spotAddress = document.getElementById("spotAddress");
-            spotAddress.textContent = "Address: " + local.endereco + " - " + local.bairro;
-
-            var item;
-            var list = document.getElementById("facilities");
-            while (list.firstChild)
-                list.removeChild(list.firstChild);
-
-            var facilities = local.nometipos.split(",");
-            //console.log("facilities: ", facilities);
-            //console.log("Nomes:  ", local.nometipos);
-            for (var i = 0; i < facilities.length; i++) {
-                facilities[i].textContent = local.nometipos;
-                item = document.createElement("li");
-                item.innerHTML = facilities[i];
-                list.appendChild(item);
-            }
-
-
-            $(modalSpot).modal({
-                backdrop: "static",
-                keyboard: true
-            });
-        }
-
-        function iniciarMapa(lat, lng) {
-            var latlng = new L.LatLng(lat, lng);
-            map.setView(latlng, 14);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-                subdomains: ['a', 'b', 'c'],
-                center: [latlng],
-                minZoom: 10,
-                zoom: 14
-            }).addTo(map);
-
-            var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
-                icons = [
-                    null,
-
-                    L.icon({
-                        iconUrl: (highDpi ? "/images/markers/park2_marker@2x.png" : "/images/markers/park2_marker.png"),
-                        iconSize: [25, 34],
-                        iconAnchor: [12, 34],
-                        popupAnchor: [0, 25]
-                    }),
-
-                    L.icon({
-                        iconUrl: (highDpi ? "/images/markers/bowl_marker@2x.png" : "/images/markers/bowl_marker.png"),
-                        iconSize: [25, 34],
-                        iconAnchor: [12, 34],
-                        popupAnchor: [0, 25]
-                    }),
-
-                    L.icon({
-                        iconUrl: (highDpi ? "/images/markers/street_marker@2x.png" : "/images/markers/street_marker.png"),
-                        iconSize: [25, 34],
-                        iconAnchor: [12, 34],
-                        popupAnchor: [0, 25]
-                    }),
-
-                    L.icon({
-                        iconUrl: (highDpi ? "/images/markers/down_marker@2x.png" : "/images/markers/down_marker.png"),
-                        iconSize: [25, 34],
-                        iconAnchor: [12, 34],
-                        popupAnchor: [0, 25]
-                    }),
-
-                    L.icon({
-                        iconUrl: (highDpi ? "/images/markers/shop_marker@2x.png" : "/images/markers/shop_marker.png"),
-                        iconSize: [25, 34],
-                        iconAnchor: [12, 34],
-                        popupAnchor: [0, 25]
-                    })
-                ];
-
-            for (var i = 0; i < locais.length; i++) {
-                var marker = L.marker([locais[i].latitude, locais[i].longitude], {
-                    icon: icons[locais[i].idtipo]
-                })
-                    .addTo(map);
-                marker.local = locais[i];
-                locais[i].marker = marker;
-                locais[i].indice = i;
-                marker.on('click', onMarkerClick);
-            }
-
-            map.on('click', function (e) {
-                //var popup = L.popup()
-                //    .setLatLng([e.latlng.lat, e.latlng.lng])
-                //    .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
-                //    .openOn(map);
-
-                document.getElementById("latitude").value = e.latlng.lat;
-                document.getElementById("longitude").value = e.latlng.lng;
-
-                abrirNovoSpot();
-            });
-        }
-
-        if (location.href.indexOf("https://") === 0) { // || (location.href.indexOf("localhost") >= 0) {
-            navigator.geolocation.getCurrentPosition(function (location) {
-                iniciarMapa(location.coords.latitude, location.coords.longitude);
-            });
-        } else {
-            iniciarMapa(-23.611178, -46.696075);
-        }
-
-        function adjustBtnGroupFacilities() {
-            var className = (window.innerWidth < 768 ? "btn-group-vertical" : "btn-group");
-            if (btnGroupFacilities.className !== className) {
-                btnGroupFacilities.className = className;
-            }
-        }
-
-        window.onresize = adjustBtnGroupFacilities;
-
-        adjustBtnGroupFacilities();
-
-    </script>
 </body>
 
 </html>
