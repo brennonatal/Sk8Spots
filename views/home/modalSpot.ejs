@@ -37,6 +37,13 @@
 
     function deleteSpot() {
         
+        // $.ajax(...) localClicado.id
+        
+        locais.splice(localClicado.indice, 1);
+        map.removeLayer(localClicado.marker);
+        for (var i = localClicado.indice; i < locais.length; i++) {
+            locais[i].indice--;
+        }
     }
 
     function abrirSpot() {
@@ -53,6 +60,7 @@
 
     function onMarkerClick() {
         var local = this.local;
+        localClicado = local;
 
         var modalSpot = document.getElementById("Spot");
 
