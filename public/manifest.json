@@ -1,13 +1,13 @@
 {
-  "name": "MyProtiviti",
-  "short_name": "MyProtiviti",
+  "name": "Sk8Spots",
+  "short_name": "Sk8Spots",
   "dir": "ltr",
   "lang": "pt-BR",
   "orientation": "portrait-primary",
   "display": "standalone",
   "background_color": "#f0f0f0",
   "theme_color": "#4080a4",
-  "description": "MyProtiviti",
+  "description": "Sk8Spots",
   "icons": [
     {
       "src": "android-icon-36x36.png",

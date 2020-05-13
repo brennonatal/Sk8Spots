@@ -9,7 +9,47 @@
         position: "topright"
     }).addTo(map);
 
-   
+    function filtrar() {
+        var desejados = [];
+        if (document.getElementById("chkSkateParks").checked) {
+            desejados.push(1);
+        }
+        if (document.getElementById("chkBowls").checked) {
+            desejados.push(2);
+        }
+        if (document.getElementById("chkStreetSpots").checked) {
+            desejados.push(3);
+        }
+        if (document.getElementById("chkDownHill").checked) {
+            desejados.push(4);
+        }
+        if (document.getElementById("chkSkateShops").checked) {
+            desejados.push(5);
+        }
+
+        for (var i = 0; i < locais.length; i++) {
+            map.removeLayer(locais[i].marker);
+        }
+
+        for (var i = 0; i < locais.length; i++) {
+            var local = locais[i];
+            var instalacoes = local.instalacoes;
+            var ok = false;
+            for (var j = 0; j < instalacoes.length; j++) {
+                var instalacao = instalacoes[j];
+                for (var k = 0; k < desejados.length; k++) {
+                    if (instalacao === desejados[k]) {
+                        ok = true;
+                        j = instalacoes.length;
+                        break;
+                    }
+                }
+            }
+            if (ok) {
+                locais[i].marker.addTo(map);
+            }
+        }
+    }
 
     function iniciarMapa(lat, lng) {
         var latlng = new L.LatLng(lat, lng);

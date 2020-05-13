@@ -42,14 +42,23 @@ body {
 
 #menuLateral .btn {
     border-radius: 0;
-}
-
-#menuLateral button {
     color: rgb(255, 255, 255);
     text-align: left;
     font-size: 20px;
     font-weight: 600;
     font-family: 'Roboto', sans-serif;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.custom-checkbox input + i {
+    opacity: 0.25;
+}
+
+.custom-checkbox input:checked + i {
+    opacity: 1;
 }
 
 .fa-bars, .fa-arrow-left {

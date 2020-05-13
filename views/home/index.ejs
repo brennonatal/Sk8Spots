@@ -44,14 +44,26 @@
         <button type="button" class="btn btn-default btn-outline btn-lg" onclick="openHowTo()"><i
                 class="fa fa-plus"></i></button>
 
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_skatepark"></i>
-            SkateParks</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_bowl"></i> Bowls</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-road"></i> StreetSpots</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="icon icon-new_downhill"></i>
-            DownHill</button>
-        <button href="#" class="btn btn-outline btn-primary btn-block"><i class="fa fa-shopping-cart"></i>
-            SkateShops</button>
+        <label for="chkSkateParks" class="custom-checkbox btn btn-outline btn-primary btn-block">
+            <input type="checkbox" id="chkSkateParks" checked onclick="filtrar()" />
+            <i class="icon icon-new_skatepark"></i> SkateParks
+        </label>
+        <label for="chkBowls" class="custom-checkbox btn btn-outline btn-primary btn-block">
+            <input type="checkbox" id="chkBowls" checked onclick="filtrar()" />
+            <i class="icon icon-new_bowl"></i> Bowls
+        </label>
+        <label for="chkStreetSpots" class="custom-checkbox btn btn-outline btn-primary btn-block">
+            <input type="checkbox" id="chkStreetSpots" checked onclick="filtrar()" />
+            <i class="fa fa-road"></i> StreetSpots
+        </label>
+        <label for="chkDownHill" class="custom-checkbox btn btn-outline btn-primary btn-block">
+            <input type="checkbox" id="chkDownHill" checked onclick="filtrar()" />
+            <i class="icon icon-new_downhill"></i> DownHill
+        </label>
+        <label for="chkSkateShops" class="custom-checkbox btn btn-outline btn-primary btn-block">
+            <input type="checkbox" id="chkSkateShops" checked onclick="filtrar()" />
+            <i class="fa fa-shopping-cart"></i> SkateShops
+        </label>
         <!--
         <button type="button" class="btn btn-outline btn-primary btn-block" onclick="abrirCadastro()"><i
                 class="fa fa-sign-in"></i> Sign in</button>  -->

@@ -1,11 +1,11 @@
 {
-  "name": "protiviti_social",
+  "name": "sk8spots",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "node app"
   },
-  "description": "Protiviti Social",
+  "description": "Sk8Spots",
   "author": {
     "name": ""
   },
