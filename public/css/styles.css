@@ -190,3 +190,7 @@ textarea{
 h3{
     margin-top: 8px;
 }
+
+ol > li{
+    margin: 20px 0px;
+}
