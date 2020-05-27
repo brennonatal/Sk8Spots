@@ -13,6 +13,14 @@ router.get("/listar", wrap(async (req: express.Request, res: express.Response) =
 	res.json(lista);
 }));
 
+router.get("/pesquisar", wrap(async (req: express.Request, res: express.Response) => {
+	let nome = (req.query["nome"]);
+	//console.log(nome);
+	let lista = await Local.pesquisar(nome);
+
+	res.json(lista);
+}));
+
 router.get("/obter", wrap(async (req: express.Request, res: express.Response) => {
 	let id = parseInt(req.query["id"]);
 

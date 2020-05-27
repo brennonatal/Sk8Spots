@@ -86,6 +86,29 @@ export = class Local {
 
 		return lista || [];
 	}
+	//METODO PESQUISAR LOCAL PELO NOME
+	public static async pesquisar(nome: string): Promise<Local[]> {
+		let lista: any[] = null;
+
+		if (!nome) {
+			return null;
+		}
+
+		await Sql.conectar(async (sql: Sql) => {
+			lista = (await sql.query("select * from local where nome like '%?%' order by nome asc", [nome])) as Local[];
+			//lista = (await sql.query("select l.id, l.nome, l.latitude, l.longitude, l.idtipo, t.nome nometipo, l.endereco, l.bairro, (select group_concat(li.idtipo) as idtipos from local_instalacao li where li.idlocal = l.id group by li.idlocal) idtipos, (select group_concat(t2.nome) as nometipos from local_instalacao li2 inner join tipo t2 on t2.id = li2.idtipo where li2.idlocal = l.id group by li2.idlocal) nometipos from local l inner join tipo t on t.id = l.idtipo order by l.nome asc"));
+			/*for (let i = 0; i < lista.length; i++) {
+				let tmp = (lista[i].idtipos as string).split(",");
+				lista[i].instalacoes = new Array(tmp.length);
+				for (let j = 0; j < tmp.length; j++) {
+					lista[i].instalacoes[j] = parseInt(tmp[j]);
+				}
+			}  */
+			
+		});
+
+		return (lista || []);
+	}
 
 	public static async obter(id: number): Promise<Local> {
 		let lista: any[] = null;

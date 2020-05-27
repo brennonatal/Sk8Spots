@@ -126,7 +126,7 @@
         });
     }
 
-    if (location.href.indexOf("https://") === 0) { // || (location.href.indexOf("localhost") >= 0) {
+    if /* (location.href.indexOf("https://") === 0) { || */ (location.href.indexOf("localhost") >= 0) {
         navigator.geolocation.getCurrentPosition(function (location) {
             iniciarMapa(location.coords.latitude, location.coords.longitude);
         });

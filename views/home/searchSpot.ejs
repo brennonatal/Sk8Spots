@@ -1,0 +1,89 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="searchSpot">
+    <div class="modal-dialog">
+
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h2 class="modal-title">Search spot</h2>
+        </div>
+        <div class="modal-body">
+
+            <label for="txtNome">Spot Name</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="txtNome"">
+                    <span class=" input-group-btn">
+                <button class="btn btn-default" type="button"  onclick="search()">Search</button>
+                </span>
+            </div><!-- /input-group -->
+
+            <hr/>
+            <ul class="list-group" id="searchList">
+                
+              </ul>
+
+        </div>
+        <div class="modal-footer">
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function openSearch() {
+        // fecharContato();
+        ocultarMenuLateral();
+        //document.getElementById("newSpot").style.top = "13%";
+        $("#searchSpot").modal({
+            backdrop: "static",
+            keyboard: true
+        });
+    }
+
+    function closeSearch() {
+        //document.getElementById("newSpot").style.top = "";
+        $("#searchSpot").modal("hide");
+    }
+
+    function search() {
+        var txtNome = $("#txtNome");
+
+        var nome = txtNome.val();
+
+        if (!nome) {
+            alert("Digite o nome do Spot");
+            return;
+        }
+
+        let opcoes = {
+            url: "api/local/pesquisar/" + nome,
+            method: "GET",
+
+            success: function (dadosDeRetorno) {
+                var txtNome = $("#txtNome");
+                
+                alert("achei algo");
+                
+                console.log(dadosDeRetorno);
+
+                txtNome.val(dadosDeRetorno.nome);
+
+            },
+
+            error: function () {
+                var txtNome = $("#txtNome");
+                
+
+                txtNome.val("");
+
+                alert("Spot não encontrado:(");
+            }
+        };
+
+        $.ajax(opcoes);
+
+    }
+
+
+</script>
