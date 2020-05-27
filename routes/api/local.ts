@@ -78,4 +78,12 @@ router.get("/excluir", wrap(async (req: express.Request, res: express.Response) 
 	}
 }));
 
+router.get("/buscarEndereco", wrap(async (req: express.Request, res: express.Response) => {
+	let end = req.query["end"];
+
+	let resultado = await Local.buscarEndereco(end);
+
+	res.json(resultado);
+}));
+
 export = router;

@@ -1,6 +1,8 @@
 ﻿import Sql = require("../infra/sql");
 import FS = require("../infra/fs");
 import Upload = require("../infra/upload");
+import https = require("https");
+import appsettings = require("../appsettings");
 
 export = class Local {
 	public id: number;
@@ -95,16 +97,14 @@ export = class Local {
 		}
 
 		await Sql.conectar(async (sql: Sql) => {
-			lista = (await sql.query("select * from local where nome like '%?%' order by nome asc", [nome])) as Local[];
-			//lista = (await sql.query("select l.id, l.nome, l.latitude, l.longitude, l.idtipo, t.nome nometipo, l.endereco, l.bairro, (select group_concat(li.idtipo) as idtipos from local_instalacao li where li.idlocal = l.id group by li.idlocal) idtipos, (select group_concat(t2.nome) as nometipos from local_instalacao li2 inner join tipo t2 on t2.id = li2.idtipo where li2.idlocal = l.id group by li2.idlocal) nometipos from local l inner join tipo t on t.id = l.idtipo order by l.nome asc"));
-			/*for (let i = 0; i < lista.length; i++) {
+			lista = (await sql.query("select l.id, l.nome, l.latitude, l.longitude, l.idtipo, t.nome nometipo, l.endereco, l.bairro, (select group_concat(li.idtipo) as idtipos from local_instalacao li where li.idlocal = l.id group by li.idlocal) idtipos, (select group_concat(t2.nome) as nometipos from local_instalacao li2 inner join tipo t2 on t2.id = li2.idtipo where li2.idlocal = l.id group by li2.idlocal) nometipos from local l inner join tipo t on t.id = l.idtipo where l.nome like ? order by l.nome asc", [nome]));
+			for (let i = 0; i < lista.length; i++) {
 				let tmp = (lista[i].idtipos as string).split(",");
 				lista[i].instalacoes = new Array(tmp.length);
 				for (let j = 0; j < tmp.length; j++) {
 					lista[i].instalacoes[j] = parseInt(tmp[j]);
 				}
-			}  */
-			
+			}
 		});
 
 		return (lista || []);
@@ -213,5 +213,35 @@ export = class Local {
 		});
 
 		return res;
+	}
+
+	public static async buscarEndereco(end: string): Promise<any> {
+		return new Promise<any>((resolve, reject) => {
+
+			try {
+				const httpreq = https.request(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(end)}&region=BR&language=pt-br&key=${appsettings.chaveMaps}`, (response) => {
+					let json = "";
+					response.setEncoding("utf8");
+					response.on("error", () => {
+						reject("Falha na comunicação com o servidor remoto.");
+					});
+					response.on("data", (chunk) => {
+						json += chunk;
+					});
+					response.on("end", () => {
+						try {
+							var obj = JSON.parse(json);
+							resolve(obj);
+						} catch (ex) {
+							reject(ex);
+						}
+					});
+				});
+				httpreq.end();
+			} catch (ex) {
+				reject(ex);
+			}
+
+		});
 	}
 };
