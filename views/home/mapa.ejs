@@ -113,17 +113,17 @@
             marker.on('click', onMarkerClick);
         }
 
-        map.on('click', function (e) {
-            //var popup = L.popup()
-            //    .setLatLng([e.latlng.lat, e.latlng.lng])
-            //    .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
-            //    .openOn(map);
+     // map.on('click', function (e) {
+     //     var popup = L.popup()
+//       .setLatLng([e.latlng.lat, e.latlng.lng])
+//       .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
+     //         .openOn(map);
 
-            document.getElementById("latitude").value = e.latlng.lat;
-            document.getElementById("longitude").value = e.latlng.lng;
+     //     document.getElementById("latitude").value = e.latlng.lat;
+     //     document.getElementById("longitude").value = e.latlng.lng;
 
-            abrirNovoSpot();
-        });
+     //     abrirNovoSpot();
+     // });
     }
 
     if /* (location.href.indexOf("https://") === 0) { || */ (location.href.indexOf("localhost") >= 0) {

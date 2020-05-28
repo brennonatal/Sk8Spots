@@ -7,12 +7,20 @@
                 <h2 class="modal-title">Add New Spot</h2>
             </div>
             <div class="modal-body">
+                <h3>Be a collaborative</h3>
+                <p>Help us to grow our community by adding new Sk8Spots to the map.</p>
+
+                <hr />
+
                 <input type="hidden" id="latitude" name="latitude" />
                 <input type="hidden" id="longitude" name="longitude" />
+
+
                 <div class="form-group">
                     <label for="nome">Spot Name:</label>
                     <input type="text" class="form-control" id="nome" name="nome" />
                 </div>
+
                 <div class="form-group">
                     <label for="idtipo">Spot Kind:</label>
                     <select id="idtipo" class="form-control" name="idtipo" size="1">
@@ -24,30 +32,73 @@
                         <option value="5">SkateShop</option>
                     </select>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group col-sm-6">
+                    <label for="state">State:</label>
+                    <select class="form-control" id="state" name="state">
+                        <option value="">Choose...</option>
+                        <option>AC</option>
+                        <option>AL</option>
+                        <option>AP</option>
+                        <option>AM</option>
+                        <option>BA</option>
+                        <option>CE</option>
+                        <option>DF</option>
+                        <option>GO</option>
+                        <option>MA</option>
+                        <option>MT</option>
+                        <option>MS</option>
+                        <option>MG</option>
+                        <option>PA</option>
+                        <option>PB</option>
+                        <option>PR</option>
+                        <option>PE</option>
+                        <option>PI</option>
+                        <option>RJ</option>
+                        <option>RN</option>
+                        <option>RS</option>
+                        <option>RO</option>
+                        <option>RR</option>
+                        <option>SC</option>
+                        <option>SP</option>
+                        <option>SE</option>
+                        <option>TO</option>
+                        <option>AC</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="city">City:</label>
+                    <input type="text" class="form-control" id="city" name="city" "
+                    placeholder=" Ex: São Paulo" maxlength="50" />
+                </div>
+
+                <div class="form-group col-sm-6">
                     <label for="endereco">Spot Address:</label>
                     <input type="text" class="form-control" id="endereco" name="endereco"
                         placeholder="Ex: Rua Jaraguá, 627" maxlength="100" />
                 </div>
-                <div class="form-group">
+
+                <div class="form-group col-sm-6">
                     <label for="bairro">Spot Neighborhood:</label>
                     <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Ex: Bom Retiro"
                         maxlength="50" />
                 </div>
+
                 <div class="form-group">
                     <span>Spot Facilities:</span> <br />
                     <div class="text-center">
                         <div class="btn-group" role="group" id="btnGroupFacilities">
-                            <label class="btn btn-default"><input type="checkbox" id="isSkatepark"
-                                    name="instalacoes" value="1" /> SkatePark</label>
+                            <label class="btn btn-default"><input type="checkbox" id="isSkatepark" name="instalacoes"
+                                    value="1" /> SkatePark</label>
                             <label class="btn btn-default"><input type="checkbox" id="isBowl" name="instalacoes"
                                     value="2" /> StreetSpot</label>
-                            <label class="btn btn-default"><input type="checkbox" id="isStreetspot"
-                                    name="instalacoes" value="3" /> Bowl</label>
+                            <label class="btn btn-default"><input type="checkbox" id="isStreetspot" name="instalacoes"
+                                    value="3" /> Bowl</label>
                             <label class="btn btn-default"><input type="checkbox" id="isDownhill" name="instalacoes"
                                     value="4" /> DownHill</label>
-                            <label class="btn btn-default"><input type="checkbox" id="isSkateshop"
-                                    name="instalacoes" value="5" /> SkateShop</label>
+                            <label class="btn btn-default"><input type="checkbox" id="isSkateshop" name="instalacoes"
+                                    value="5" /> SkateShop</label>
                         </div>
                     </div>
                 </div>
@@ -57,7 +108,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary">Add Spot</button>
             </div>
     </div>
@@ -67,7 +117,7 @@
     function abrirNovoSpot() {
         // fecharContato();
         ocultarMenuLateral();
-        //document.getElementById("newSpot").style.top = "13%";
+
         $("#newSpot").modal({
             backdrop: "static",
             keyboard: true
@@ -75,16 +125,30 @@
     }
 
     function fecharNovospot() {
-        //document.getElementById("newSpot").style.top = "";
         $("#newSpot").modal("hide");
     }
 
-    function obterLatLng(end) {
+
+    function obterLatLng() {
+
+        var txtState = $('#state');
+        var txtCity = $('#city');
+        var txtAddress = $('#endereco');
+        var txtBairro = $('#bairro');
+
+
+        var address = txtAddress.val();
+        var state = txtState.val();
+        var city = txtCity.val();
+        var bairro = txtBairro.val();
+
+        var end = `${address} ${city} ${state}`;
+
         $.ajax({
             url: "api/local/buscarEndereco?end=" + encodeURIComponent(end),
             success: function (dados) {
                 var enderecos = [];
-                
+
                 if (dados && dados.results) {
                     for (var i = 0; i < dados.results.length; i++) {
                         var resultado = dados.results[i];
@@ -98,8 +162,25 @@
                     }
                 }
 
-                // @@@@
-                debugger;
+                for (let index = 0; index < enderecos.length; index++) {
+                    console.log(enderecos[index]);
+
+                }
+
+
+
+                //    .setLatLng([e.latlng.lat, e.latlng.lng])
+                //    .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
+                //    .openOn(map);
+
+
+                if (enderecos.length > 1) {
+                    alert("Achamos mais que um endereco...");
+                } else {
+                    document.getElementById("latitude").value = enderecos[0].lat;
+                    document.getElementById("longitude").value = enderecos[0].lng;
+                }
+
             },
             error: function () {
                 alert("Algo deu errado :(");
@@ -117,6 +198,16 @@
             idtipo: {
                 required: true
             },
+            state: {
+                required: true,
+                minlength: 1,
+                maxlength: 20
+            },
+            city: {
+                required: true,
+                minlength: 2,
+                maxlength: 100
+            },
             endereco: {
                 required: true,
                 minlength: 5,
@@ -132,6 +223,8 @@
             }
         },
         submitHandler: function (form) {
+
+            obterLatLng();
 
             var formData = new FormData(form);
 

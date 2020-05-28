@@ -181,12 +181,8 @@ textarea{
 }
 
 #spotImage {
-    max-width: 70%;
     max-height: 250px;
-    border-radius: 20%;
-    border-style: solid;
-    border-width: 3px;
-    border-color: rgb(158, 158, 158);
+
 }
 
 .faci {
@@ -201,4 +197,11 @@ h3{
 
 ol > li{
     margin: 20px 0px;
+}
+
+.thumbnail {
+    background-color: inherit;
+    border: 0px solid #ddd;
+    border-radius: 4px;
+    
 }
