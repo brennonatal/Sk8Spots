@@ -92,9 +92,9 @@
                             <label class="btn btn-default"><input type="checkbox" id="isSkatepark" name="instalacoes"
                                     value="1" /> SkatePark</label>
                             <label class="btn btn-default"><input type="checkbox" id="isBowl" name="instalacoes"
-                                    value="2" /> StreetSpot</label>
+                                    value="2" /> Bowl</label>
                             <label class="btn btn-default"><input type="checkbox" id="isStreetspot" name="instalacoes"
-                                    value="3" /> Bowl</label>
+                                    value="3" /> StreetSpot</label>
                             <label class="btn btn-default"><input type="checkbox" id="isDownhill" name="instalacoes"
                                     value="4" /> DownHill</label>
                             <label class="btn btn-default"><input type="checkbox" id="isSkateshop" name="instalacoes"
@@ -128,8 +128,27 @@
         $("#newSpot").modal("hide");
     }
 
+    function terminarEnvio(form) {
+        var formData = new FormData(form);
+        $.ajax({
+            url: "api/local/criar",
+            method: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function () {
+                fecharNovospot();
+                form.reset();
+                alert("Criado com sucesso!");
+                location.reload();
+            },
+            error: function () {
+                alert("Erro!");
+            }
+        });
+    }
 
-    function obterLatLng() {
+    function obterLatLng(form) {
 
         var txtState = $('#state');
         var txtCity = $('#city');
@@ -179,6 +198,8 @@
                 } else {
                     document.getElementById("latitude").value = enderecos[0].lat;
                     document.getElementById("longitude").value = enderecos[0].lng;
+
+                    terminarEnvio(form);
                 }
 
             },
@@ -224,26 +245,7 @@
         },
         submitHandler: function (form) {
 
-            obterLatLng();
-
-            var formData = new FormData(form);
-
-            $.ajax({
-                url: "api/local/criar",
-                method: "post",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function () {
-                    fecharNovospot();
-                    form.reset();
-                    alert("Criado com sucesso!");
-                    location.reload();
-                },
-                error: function () {
-                    alert("Erro!");
-                }
-            });
+            obterLatLng(form);
 
         }
     });
