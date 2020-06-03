@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS sk8spot;
-USE sk8spot;
+CREATE DATABASE IF NOT EXISTS sk8spots;
+USE sk8spots;
 
 -- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'
 
