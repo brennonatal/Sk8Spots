@@ -22,14 +22,14 @@
 
 
                 <div class="faci">
-                    <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Facilities:</h3>
+                    <h3><i class="fa fa-check-square-o" aria-hidden="true"></i> Instalações:</h3>
                     <ul id="facilities"></ul>
                 </div>
             </div>
             <div class="modal-footer">
 
 
-                <button type="button" class="btn btn-default" onclick="deleteSpot()">Delete Spot</button>
+                <button type="button" class="btn btn-default" onclick="deleteSpot()">Deletar Spot</button>
             </div>
     </div>
 </div>
@@ -96,7 +96,7 @@
         spotImage.src = "/locais/" + local.id + ".jpg";
 
         var spotAddress = document.getElementById("spotAddress");
-        spotAddress.textContent = "Address: " + local.endereco + " - " + local.bairro;
+        spotAddress.textContent = "" + local.endereco + " - " + local.bairro;
 
         var item;
         var list = document.getElementById("facilities");

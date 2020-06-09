@@ -32,7 +32,7 @@ body {
     bottom: 0;
     width: 200px;
     height: min-content;
-    border-radius: 2px;
+    border-radius: 0  0 8px;
     background-color: rgb(64, 0, 138);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     -webkit-transition: left ease-in-out .2s;
@@ -71,8 +71,11 @@ body {
     height: auto;
 }
 
-.btn-outline:hover {
+.btn:hover {
+    transition: 400ms;
     background-color: rgb(233, 4, 183);
+    color: #fff;
+    
 }
 
 #cadastro, #contato {
@@ -204,4 +207,15 @@ ol > li{
     border: 0px solid #ddd;
     border-radius: 4px;
     
+}
+
+.logo {
+    width: 250px; 
+    vertical-align: top;
+}
+
+@media (max-width: 360px){
+    .logo {
+        width: 210px;
+    }
 }

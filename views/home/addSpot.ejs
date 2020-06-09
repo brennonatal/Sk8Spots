@@ -4,25 +4,25 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title">Add New Spot</h2>
+                <h2 class="modal-title">Adicionar Spot</h2>
             </div>
             <div class="modal-body">
-                <h3>Be a collaborative</h3>
+                <!-- <h3>Be a collaborative</h3>
                 <p>Help us to grow our community by adding new Sk8Spots to the map.</p>
 
-                <hr />
+                <hr /> -->
 
                 <input type="hidden" id="latitude" name="latitude" />
                 <input type="hidden" id="longitude" name="longitude" />
 
 
                 <div class="form-group">
-                    <label for="nome">Spot Name:</label>
+                    <label for="nome">Nome do Spot:</label>
                     <input type="text" class="form-control" id="nome" name="nome" />
                 </div>
 
                 <div class="form-group">
-                    <label for="idtipo">Spot Kind:</label>
+                    <label for="idtipo">Tipo do Spot:</label>
                     <select id="idtipo" class="form-control" name="idtipo" size="1">
                         <option selected="selected" value="0">Selecione...</option>
                         <option value="1">SkatePark</option>
@@ -34,59 +34,35 @@
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="state">State:</label>
-                    <select class="form-control" id="state" name="state">
-                        <option value="">Choose...</option>
-                        <option>AC</option>
-                        <option>AL</option>
-                        <option>AP</option>
-                        <option>AM</option>
-                        <option>BA</option>
-                        <option>CE</option>
-                        <option>DF</option>
-                        <option>GO</option>
-                        <option>MA</option>
-                        <option>MT</option>
-                        <option>MS</option>
-                        <option>MG</option>
-                        <option>PA</option>
-                        <option>PB</option>
-                        <option>PR</option>
-                        <option>PE</option>
-                        <option>PI</option>
-                        <option>RJ</option>
-                        <option>RN</option>
-                        <option>RS</option>
-                        <option>RO</option>
-                        <option>RR</option>
-                        <option>SC</option>
-                        <option>SP</option>
-                        <option>SE</option>
-                        <option>TO</option>
-                        <option>AC</option>
+                    <label for="state">Estado:</label>
+                    <select class="form-control" name="uf">
+                        <option value="">Selecione o estado</option>
+                    </select>
+
+                    <input type="hidden" id="state" name="state">
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <label for="city">Cidade:</label>
+                    <select class="form-control" name="city" id="city" disabled="disabled">
+                        <option value="city">Selecione a cidade</option>
                     </select>
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="city">City:</label>
-                    <input type="text" class="form-control" id="city" name="city" "
-                    placeholder=" Ex: São Paulo" maxlength="50" />
-                </div>
-
-                <div class="form-group col-sm-6">
-                    <label for="endereco">Spot Address:</label>
+                    <label for="endereco">Endereço:</label>
                     <input type="text" class="form-control" id="endereco" name="endereco"
                         placeholder="Ex: Rua Jaraguá, 627" maxlength="100" />
                 </div>
 
                 <div class="form-group col-sm-6">
-                    <label for="bairro">Spot Neighborhood:</label>
+                    <label for="bairro">Bairro:</label>
                     <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Ex: Bom Retiro"
                         maxlength="50" />
                 </div>
 
                 <div class="form-group">
-                    <span>Spot Facilities:</span> <br />
+                    <span>Instalações:</span> <br />
                     <div class="text-center">
                         <div class="btn-group" role="group" id="btnGroupFacilities">
                             <label class="btn btn-default"><input type="checkbox" id="isSkatepark" name="instalacoes"
@@ -103,12 +79,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="image"><span>Pictures:</span> </label>
+                    <label for="image"><span>Foto:</span> </label>
                     <input type="file" class="form-control" id="image" name="image" accept="image/*" />
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Add Spot</button>
+                <button type="submit" class="btn btn-primary">Adicionar Spot</button>
             </div>
     </div>
 </div>
@@ -127,6 +103,52 @@
     function fecharNovospot() {
         $("#newSpot").modal("hide");
     }
+
+    function populateUFs() {
+        const ufSelect = document.querySelector('select[name=uf]')
+
+        fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome")
+            .then(res => res.json())
+            .then(states => {
+
+                for (state of states) {
+                    ufSelect.innerHTML += `<option value='${state.id}'>${state.nome}</option>`
+                }
+
+            })
+    }
+
+    populateUFs();
+
+    function getCities(event) {
+        const citySelect = document.querySelector('select[name=city]')
+        const stateInput = document.querySelector('input[name=state]')
+
+        const ufValue = event.target.value
+
+        const indexOfSelectedState = event.target.selectedIndex
+        stateInput.value = event.target.options[indexOfSelectedState].text
+
+        const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios?orderBy=nome`
+
+        citySelect.innerHTML = "`<option value>Selecione a cidade</option>`"
+        citySelect.disabled = true
+
+        fetch(url)
+            .then(res => res.json())
+            .then(cities => {
+                for (city of cities) {
+                    citySelect.innerHTML += `<option value='${city.nome}'>${city.nome}</option>`
+                }
+
+                citySelect.disabled = false
+            })
+
+    }
+
+    document
+        .querySelector('select[name=uf]')
+        .addEventListener("change", getCities)
 
     function terminarEnvio(form) {
         var formData = new FormData(form);
@@ -221,13 +243,9 @@
             },
             state: {
                 required: true,
-                minlength: 1,
-                maxlength: 20
             },
             city: {
                 required: true,
-                minlength: 2,
-                maxlength: 100
             },
             endereco: {
                 required: true,
