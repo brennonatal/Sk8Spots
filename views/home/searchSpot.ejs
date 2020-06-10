@@ -54,7 +54,7 @@
         }
 
         let opcoes = {
-            url: "api/local/pesquisar/" + "%" + nome + "%",
+            url: "api/local/pesquisar?nome=" + encodeURIComponent(nome),
             method: "GET",
 
             success: function (dadosDeRetorno) {
