@@ -123,6 +123,25 @@ body {
     background-color: rgb(64, 0, 138);
 }
 
+#Spot h3 {
+    margin: 0 0 10px;
+}
+
+.faci {
+    background-color: rgb(59, 33, 124);
+    padding: 10px 0px;
+    border-radius: 8px;
+}
+
+#howTo p {
+    font-size: 16px;
+}
+
+#howTo ol > li{
+    margin: 20px 0px;
+    font-size: 16px;
+
+}
 .form-group > label {
     font-size: 18px;
 }
@@ -143,6 +162,10 @@ body {
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
     background-color: rgb(102, 51, 162);
+}
+
+.list-group-item {
+    background-color: transparent;
 }
 
 .input-group-btn > .btn {

@@ -2,7 +2,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Pesquisar Spot</h4>
             </div>
             <div class="modal-body">
@@ -11,14 +12,14 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="txtNome" />
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"  onclick="search()">Buscar</button>
+                            <button class="btn btn-default" type="submit" onclick="search()">Buscar</button>
                         </span>
                     </div>
                 </div>
 
-                <hr/>
 
                 <ul class="list-group" id="searchList"></ul>
+
             </div>
             <div class="modal-footer">
             </div>
@@ -45,6 +46,7 @@
 
     function search() {
         var txtNome = $("#txtNome");
+        var listResults = document.getElementById('searchList')
 
         var nome = txtNome.val();
 
@@ -57,24 +59,34 @@
             url: "api/local/pesquisar?nome=" + encodeURIComponent(nome),
             method: "GET",
 
-            success: function (dadosDeRetorno) {
-                var txtNome = $("#txtNome");
-                
-                alert("achei algo");
-                
-                console.log(dadosDeRetorno);
 
-                txtNome.val(dadosDeRetorno.nome);
+            success: function (dadosDeRetorno) {
+                // var txtNome = $("#txtNome");
+
+                console.log(dadosDeRetorno);
+                listResults.innerHTML = ""
+
+                // txtNome.val(dadosDeRetorno.nome);
+                // console.log(dadosDeRetorno[0].nome)
+                if (dadosDeRetorno.length > 0) {
+                    for (let i = 0; i < dadosDeRetorno.length; i++) {
+                        listResults.innerHTML += `<li class="list-group-item">${dadosDeRetorno[i].nome} - ${dadosDeRetorno[i].endereco}, ${dadosDeRetorno[i].bairro} </li>`
+
+                    }
+                } else {
+                    listResults.innerHTML += `<li class="list-group-item">Não foi encontrado nenhum Spot com esse nome</li>`
+                }
+
 
             },
 
             error: function () {
                 var txtNome = $("#txtNome");
-                
+
 
                 txtNome.val("");
 
-                alert("Spot não encontrado:(");
+                alert("Spot não encontrado :(");
             }
         };
 
