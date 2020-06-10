@@ -214,8 +214,3 @@ ol > li{
     vertical-align: top;
 }
 
-@media (max-width: 360px){
-    .logo {
-        width: 210px;
-    }
-}
