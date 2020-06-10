@@ -1,0 +1,62 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="confirm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Você tem certeza?</h4>
+            </div>
+            <div class="modal-body">
+                <h3>Essa ação não será reversível</h3>
+                <div class="form-group">
+                    <button class="btn btn-danger btn-block" onclick="deletar(localParaExcluir)">Sim, eu quero excluir esse Spot!</button>
+                    <button class="btn btn-default btn-block"onclick="naoDeletar()">Mudei de ideia</button>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function abrirConfirmacao() {
+        ocultarMenuLateral();
+        $("#confirm").modal({
+            backdrop: "static",
+            keyboard: true
+        });
+    }
+
+    function deletar(localClicado) {
+        $.ajax({
+            url: "api/local/excluir?id=" + encodeURIComponent(localClicado.id),
+            method: "get",
+
+            success: function (dadosDeRetorno) {
+                // fecharSpot();
+                naoDeletar();
+                //dadosDeRetorno.remove().draw();
+                alert("Excluído com sucesso!");
+                //location.reload();
+                locais.splice(localClicado.indice, 1);
+
+                map.removeLayer(localClicado.marker);
+                for (var i = localClicado.indice; i < locais.length; i++) {
+                    locais[i].indice--;
+                }
+            },
+            error: function () {
+                alert("Erro!");
+                //console.log(localClicado.nome);
+            }
+        });
+    }
+
+    function naoDeletar() {
+        $("#confirm").modal("hide");
+    }
+
+</script>

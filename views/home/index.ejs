@@ -48,6 +48,8 @@
             <button type="button" class="btn btn-default btn-outline btn-lg" style="float: right;" onclick="abrirNovoSpot()"><i class="fa fa-plus"></i></button>
 
             <button type="button" class="btn btn-default btn-outline btn-lg" style="float: right;" onclick="openSearch()"><i class="fa fa-search"></i></button>
+           
+            <button type="button" class="btn btn-default btn-outline btn-lg" style="float: right;" onclick="openHowTo()"><i class="fa fa-question"></i></button>
         </div>
 
         <label for="chkSkateParks" class="custom-checkbox btn btn-outline btn-primary btn-block">
@@ -75,30 +77,6 @@
                 class="fa fa-sign-in"></i> Sign in</button>  -->
     </div>
 
-    <!--Sign in form
-    <div id="cadastro" class="col-sm-6 col-sm-offset-3 col-sm-offset-right-3">
-        <div class="conteudo-cadastro">
-
-            <button type="button" class="close" onclick="fecharCadastro()">&times;</button>
-            <form action="">
-                <h2>Sign Up</h2>
-                <div>
-                    <label for="POST-userName">Full Name:</label>
-                    <input type="text" id="POST-userName" > </br>
-                    <label for="POST-userEmail">Email Address:</label>
-                    <input type="email" id="POST-userEmail" spellcheck="false"> </br>
-                    <label for="userPwd">Password:</label>
-                    <input type="password" id="userPwd" placeholder="Password"> </br>
-                    <label for="userPwd2">Repeat Password:</label>
-                    <input type="password" id="userPwd2" placeholder="Repeat Password">
-                </div>
-
-
-                <button type="submit" href="/">Create user</button>
-            </form>
-
-        </div>
-    </div>    -->
 
     <!--Spot Details-->
     <%- include("modalSpot") %>
@@ -115,22 +93,21 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Adding new spot</h4>
+                    <h4 class="modal-title">Como adicionar um Spot</h4>
                 </div>
                 <div class="modal-body">
-                    <h3>Be a collaborative</h3>
-                    <p>Help us to grow our community by adding new Sk8Spots to the map.</p>
+                    <h3>Seja um colaborador</h3>
+                    <p>Ajude-nos a crescer a comunidade adicionando novos Sk8Spots.</p>
 
                     <hr />
 
-                <!-- <h3>How can I add a new Spot?</h3>
+                <h3>Como eu faço isso?</h3>
                     <ol>
-                        <li>In order to do so, you just have to click on the map where the spot is located at, it's
-                            preferable to be at your spot. </li>
-                        <li>That way you can take great pictures to show others how it looks.</li>
-                        <li>So let's get a move on, take your board and go unlock your first Sk8Spot!</li>
+                        <li>Muito simples! Basta saber o endereço e ter uma foto do <strong>Spot.</strong></li>
+                        <li>É preferível que você esteja no lugar para tirar uma foto, dessa forma outros podem ver como é!</li>
+                        <li>Então bora pra session, pegue o seu board e vá compartilhar o seu primeiro Sk8Spot!</li>
                     </ol>
-                    -->
+                   
                     
 
                 </div>
@@ -198,20 +175,6 @@
 
     </script>
 
-    <!--Script cadastro
-    <script type="text/javascript">
-        function abrirCadastro() {
-            fecharContato();
-            ocultarMenuLateral();
-            fecharNovospot();
-            document.getElementById("cadastro").style.top = "13%";
-        }
-
-        function fecharCadastro() {
-            document.getElementById("cadastro").style.top = "";
-        }
-
-    </script>  -->
 
     <%- include("mapa") %>
 
