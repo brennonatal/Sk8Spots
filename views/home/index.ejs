@@ -9,7 +9,7 @@
     <link rel=icon href="images/sk8spots_ICON.svg">
     <title>Sk8Spots</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
    
 
@@ -36,20 +36,19 @@
     <div id="map"></div>
 
     <div class="botao_menu">
-        <button type="button" class="btn btn-primary btn-outline btn-lg" onclick="mostrarMenuLateral()"><i
+        <button type="button" class="btn btn-primary btn-lg" onclick="mostrarMenuLateral()"><i
                 class="fa fa-bars"></i></button>
         <img src="images/sk8spots_LOGO_preto@3x.png" class="logo" />
     </div>
     <!--Menu lateral-->
     <div id="menuLateral">
-        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i
-                class="fa fa-arrow-left" style="width: 55px;"></i></button>
+        <div class="clearfix col-xs-space-bottom">
+            <button type="button" class="btn btn-default btn-outline btn-lg" onclick="ocultarMenuLateral()"><i class="fa fa-arrow-left"></i></button>
 
-        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="openSearch()"><i
-                class="fa fa-search"></i></button>
+            <button type="button" class="btn btn-default btn-outline btn-lg" style="float: right;" onclick="abrirNovoSpot()"><i class="fa fa-plus"></i></button>
 
-        <button type="button" class="btn btn-default btn-outline btn-lg" onclick="abrirNovoSpot()"><i
-                class="fa fa-plus"></i></button>
+            <button type="button" class="btn btn-default btn-outline btn-lg" style="float: right;" onclick="openSearch()"><i class="fa fa-search"></i></button>
+        </div>
 
         <label for="chkSkateParks" class="custom-checkbox btn btn-outline btn-primary btn-block">
             <input type="checkbox" id="chkSkateParks" checked onclick="filtrar()" />
@@ -67,7 +66,7 @@
             <input type="checkbox" id="chkDownHill" checked onclick="filtrar()" />
             <i class="icon icon-new_downhill"></i> DownHill
         </label>
-        <label for="chkSkateShops" class="custom-checkbox btn btn-outline btn-primary btn-block">
+        <label for="chkSkateShops" class="custom-checkbox btn btn-outline btn-primary btn-block col-xs-space-bottom">
             <input type="checkbox" id="chkSkateShops" checked onclick="filtrar()" />
             <i class="fa fa-shopping-cart"></i> SkateShops
         </label>
@@ -113,31 +112,31 @@
     <!--HOW TO ADD NEW SPOT?-->
     <div class="modal fade" tabindex="-1" role="dialog" id="howTo">
         <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Adding new spot</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Be a collaborative</h3>
+                    <p>Help us to grow our community by adding new Sk8Spots to the map.</p>
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title">Adding new spot</h2>
-            </div>
-            <div class="modal-body">
-                <h3>Be a collaborative</h3>
-                <p>Help us to grow our community by adding new Sk8Spots to the map.</p>
+                    <hr />
 
-                <hr />
+                <!-- <h3>How can I add a new Spot?</h3>
+                    <ol>
+                        <li>In order to do so, you just have to click on the map where the spot is located at, it's
+                            preferable to be at your spot. </li>
+                        <li>That way you can take great pictures to show others how it looks.</li>
+                        <li>So let's get a move on, take your board and go unlock your first Sk8Spot!</li>
+                    </ol>
+                    -->
+                    
 
-               <!-- <h3>How can I add a new Spot?</h3>
-                <ol>
-                    <li>In order to do so, you just have to click on the map where the spot is located at, it's
-                        preferable to be at your spot. </li>
-                    <li>That way you can take great pictures to show others how it looks.</li>
-                    <li>So let's get a move on, take your board and go unlock your first Sk8Spot!</li>
-                </ol>
-                -->
-                
+                </div>
+                <div class="modal-footer">
 
-            </div>
-            <div class="modal-footer">
-
+                </div>
             </div>
         </div>
     </div>
@@ -147,11 +146,38 @@
 
     <!--Script menu lateral-->
     <script type="text/javascript">
+
+        var menuLateralVisivel = false;
+
+        function tratarDocumentClick(e) {
+            var menuLateral = document.getElementById("menuLateral");
+
+            var pai = e.target;
+            while (pai && pai !== document.body) {
+                if (pai === menuLateral) {
+                    return;
+                }
+                pai = pai.parentNode;
+            }
+            
+            ocultarMenuLateral();
+        }
+
         function mostrarMenuLateral() {
+            if (menuLateralVisivel) {
+                return;
+            }
+            document.addEventListener("click", tratarDocumentClick, true);
+            menuLateralVisivel = true;
             document.getElementById("menuLateral").style.left = "0px";
         }
 
         function ocultarMenuLateral() {
+            if (!menuLateralVisivel) {
+                return;
+            }
+            document.removeEventListener("click", tratarDocumentClick, true);
+            menuLateralVisivel = false;
             document.getElementById("menuLateral").style.left = "";
         }
 

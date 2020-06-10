@@ -1,30 +1,27 @@
 <div class="modal fade" tabindex="-1" role="dialog" id="searchSpot">
     <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pesquisar Spot</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txtNome">Nome do Spot</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="txtNome" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"  onclick="search()">Buscar</button>
+                        </span>
+                    </div>
+                </div>
 
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                    aria-hidden="true">&times;</span></button>
-            <h2 class="modal-title">Pesquisar Spot</h2>
-        </div>
-        <div class="modal-body">
+                <hr/>
 
-            <label for="txtNome">Nome do Spot</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="txtNome"">
-                    <span class=" input-group-btn">
-                <button class="btn btn-default" type="button"  onclick="search()"> <strong>Buscar</strong></button>
-                </span>
-            </div><!-- /input-group -->
-
-            <hr/>
-            <ul class="list-group" id="searchList">
-                
-              </ul>
-
-        </div>
-        <div class="modal-footer">
-
-
+                <ul class="list-group" id="searchList"></ul>
+            </div>
+            <div class="modal-footer">
+            </div>
         </div>
     </div>
 </div>

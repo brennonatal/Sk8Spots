@@ -4,6 +4,7 @@ html, body {
 }
 
 body {
+    font-family: Roboto,"Open Sans","Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color: #2b187c;
     overflow: hidden;
 }
@@ -45,8 +46,7 @@ body {
     color: rgb(255, 255, 255);
     text-align: left;
     font-size: 20px;
-    font-weight: 600;
-    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 
 .custom-checkbox input {
@@ -61,152 +61,22 @@ body {
     opacity: 1;
 }
 
-.fa-bars, .fa-arrow-left {
-    color: rgb(255, 255, 255);
-    font-weight: 520;
-}
-
-.btn-lg {
-    background-color: rgb(64, 0, 138);
-    height: auto;
-}
-
-.btn:hover {
-    transition: 400ms;
-    background-color: rgb(233, 4, 183);
-    color: #fff;
-    
-}
-
-#cadastro, #contato {
-    position: fixed;
-    z-index: 2;
-    top: -600px;
-    bottom: 0;
-    width: 50%;
-    height: min-content;
-    padding-bottom: 30px;
-    border-radius: 4px;
-    background-color: rgba(64, 0, 138 , 0.95);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    -webkit-transition: top ease-in-out .3s;
-    -o-transition: top ease-in-out .3s;
-    transition: top ease-in-out .3s;
-    -webkit-box-shadow: 0px 0px 25px 20px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 25px 20px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 25px 20px rgba(0,0,0,0.5);
-}
-
-.close {
-    color: rgb(233, 4, 183);
-    float: right;
-    opacity: initial;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-form label{
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    
-}
-
-form h2{
-
-    color: rgb(255, 255, 255); 
-}
-
-form input{
-    width: max-content;
-    margin: 0 0;
-    border: none;
-    border-radius: 2px;
-}
-
-form button{
-    background-color: rgb(233, 4, 183);
-    color: rgb(255, 255, 255);
-    border: none;
-    font-size: 24px;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-   
-}
-
-
-span{
-    font-size: 22px;
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    
-}
-
-textarea{
-    width: 100%;
-    border-radius: 2px;
-    margin: 10px 0;
-
-}
-
-.icons{
+.icons {
     width: 22px;
-}
-
-.modal {
-    color: white;
-}
-
-.modal-body{
-    background-color: rgba(64, 0, 138 , 0.95);
-    margin: 0 0;
-    font-size: 17px;
-    padding: 15px 20px;
-}
-
-.modal-header, .modal-footer{
-    background-color: rgb(40, 0, 85);
-    border: 0;
-}
-
-.modal-footer .btn-default{
-    background-color: rgba(255, 0, 0, 0.7);
-    color: white;
 }
 
 #spotImage {
     max-height: 250px;
-
 }
 
-.faci {
-    background-color: rgb(47, 0, 100);
-    padding: 1px 15px;
-    max-height: min-content;
-}
-
-h3{
-    margin-top: 8px;
-}
-
-ol > li{
-    margin: 20px 0px;
+#facilities {
+    font-size: 18px;
 }
 
 .thumbnail {
     background-color: inherit;
     border: 0px solid #ddd;
     border-radius: 4px;
-    
 }
 
 .logo {
@@ -214,3 +84,72 @@ ol > li{
     vertical-align: top;
 }
 
+/*.btn-lg {
+    background-color: rgb(64, 0, 138);
+    height: auto;
+}*/
+
+.btn-lg {
+    background-color: rgb(64, 0, 138);
+    color: #fff;
+}
+
+.btn:active, .btn:hover, .btn:focus {
+    background-color: rgb(233, 4, 183);
+    color: #fff;
+}
+
+.close, .close:hover {
+    color: rgb(255, 255, 255);
+    opacity: 1;
+    text-shadow: none;
+}
+
+.close, .modal-title {
+    line-height: 1.42857143;
+    font-size: 28px;
+}
+
+.modal {
+    color: rgb(255, 255, 255);
+}
+
+.modal-header, .modal-footer {
+    background-color: rgb(40, 0, 85);
+    border: 0;
+}
+
+.modal-body {
+    background-color: rgb(64, 0, 138);
+}
+
+.form-group > label {
+    font-size: 18px;
+}
+
+.form-control {
+    color: rgb(255, 255, 255);
+    background-color: rgb(102, 51, 162);
+    border: 1px solid transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    border-color: rgba(233, 4, 183,.75);
+    -webkit-box-shadow: 0 0 0 3px rgba(233, 4, 183,.3);
+    box-shadow: 0 0 0 3px rgba(233, 4, 183,.3);
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: rgb(102, 51, 162);
+}
+
+.input-group-btn > .btn {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+select.form-control[size="1"], select.form-control:not([size]), .select-arrow {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAUCAQAAACw0XJcAAAAa0lEQVRIx83OsRGAMAwDQO9fsw+jQZGCywWInViWfoK3065EhwHkFSG9vCKsl1OE9vaL8N5esaS3XizrrRVLe/FieS9WpPT8RVrPV6T25kV6778o0fsuyvTei1K9sSjX64uSvaco22tFVu8GQogPsopaMbEAAAAASUVORK5CYII=);
+}
