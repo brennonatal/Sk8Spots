@@ -165,8 +165,19 @@ body {
     background-color: rgb(102, 51, 162);
 }
 
-.list-group-item {
+#searchList > .list-group-item {
     background-color: #42268B;
+    padding: 0;
+}
+
+#searchList > .list-group-item > a {
+    color: rgb(255, 255, 255);
+    display: block;
+    padding: 10px 15px;
+}
+
+#searchList > .list-group-item > a:hover, #searchList > .list-group-item > a:active, #searchList > .list-group-item > a:focus {
+    color: rgb(233, 4, 183);
 }
 
 .input-group-btn > .btn {

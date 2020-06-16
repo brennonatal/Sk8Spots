@@ -6,13 +6,13 @@
                         aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Pesquisar Spot</h4>
             </div>
-            <div class="modal-body">
+            <form class="modal-body" id="form-search">
                 <div class="form-group">
                     <label for="txtNome">Nome do Spot</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="txtNome" />
+                        <input type="text" class="form-control" id="txtNome" name="txtNome" maxlength="50" />
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit" onclick="search()">Buscar</button>
+                            <button class="btn btn-default" type="submit">Buscar</button>
                         </span>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
 
                 <ul class="list-group" id="searchList"></ul>
 
-            </div>
+            </form>
             <div class="modal-footer">
             </div>
         </div>
@@ -28,10 +28,30 @@
 </div>
 
 <script>
+    var openResultSpotId = 0;
+
+    function openResultSpot(id) {
+        openResultSpotId = id;
+        $("#searchSpot").modal("hide");
+        return false;
+    }
+
+    $("#searchSpot").on("hidden.bs.modal", function () {
+        if (openResultSpotId) {
+            for (var i = 0; i < locais.length; i++) {
+                if (locais[i].id === openResultSpotId) {
+                    onMarkerClick.call(locais[i].marker);
+                    break;
+                }
+            }
+            openResultSpotId = 0;
+        }
+    });
 
     function openSearch() {
         // fecharContato();
         ocultarMenuLateral();
+        openResultSpotId = 0;
         //document.getElementById("newSpot").style.top = "13%";
         $("#searchSpot").modal({
             backdrop: "static",
@@ -44,55 +64,53 @@
         $("#searchSpot").modal("hide");
     }
 
-    function search() {
-        var txtNome = $("#txtNome");
-        var listResults = document.getElementById('searchList')
-
-        var nome = txtNome.val();
-
-        if (!nome) {
-            alert("Digite o nome do Spot");
-            return;
-        }
-
-        let opcoes = {
-            url: "api/local/pesquisar?nome=" + encodeURIComponent(nome),
-            method: "GET",
-
-
-            success: function (dadosDeRetorno) {
-                // var txtNome = $("#txtNome");
-
-                console.log(dadosDeRetorno);
-                listResults.innerHTML = ""
-
-                // txtNome.val(dadosDeRetorno.nome);
-                // console.log(dadosDeRetorno[0].nome)
-                if (dadosDeRetorno.length > 0) {
-                    for (let i = 0; i < dadosDeRetorno.length; i++) {
-                        listResults.innerHTML += `<li class="list-group-item">${dadosDeRetorno[i].nome} - ${dadosDeRetorno[i].endereco}, ${dadosDeRetorno[i].bairro} </li>`
-
-                    }
-                } else {
-                    listResults.innerHTML += `<li class="list-group-item">Não foi encontrado nenhum Spot com esse nome</li>`
-                }
-
-
-            },
-
-            error: function () {
-                var txtNome = $("#txtNome");
-
-
-                txtNome.val("");
-
-                alert("Spot não encontrado :(");
+    $("#form-search").validate({
+        rules: {
+            txtNome: {
+                maxlength: 50
             }
-        };
+        },
+        submitHandler: function (form) {
+            var txtNome = $("#txtNome");
+            var listResults = document.getElementById('searchList')
 
-        $.ajax(opcoes);
+            var nome = txtNome.val().normalize().trim();
 
-    }
+            let opcoes = {
+                url: "api/local/pesquisar?nome=" + encodeURIComponent(nome),
+                method: "GET",
 
+                success: function (dadosDeRetorno) {
+                    // var txtNome = $("#txtNome");
+
+                    console.log(dadosDeRetorno);
+                    listResults.innerHTML = ""
+
+                    // txtNome.val(dadosDeRetorno.nome);
+                    // console.log(dadosDeRetorno[0].nome)
+                    if (dadosDeRetorno && dadosDeRetorno.length > 0) {
+                        for (let i = 0; i < dadosDeRetorno.length; i++) {
+                            listResults.innerHTML += `<li class="list-group-item"><a href="#" onclick="return openResultSpot(${dadosDeRetorno[i].id});">${dadosDeRetorno[i].nome} - ${dadosDeRetorno[i].endereco}, ${dadosDeRetorno[i].bairro}</a></li>`
+
+                        }
+                    } else {
+                        listResults.innerHTML += `<li class="list-group-item">Não foi encontrado nenhum Spot com esse nome</li>`
+                    }
+
+                },
+
+                error: function () {
+                    var txtNome = $("#txtNome");
+
+
+                    txtNome.val("");
+
+                    alert("Spot não encontrado :(");
+                }
+            };
+
+            $.ajax(opcoes);
+        }
+    });
 
 </script>
