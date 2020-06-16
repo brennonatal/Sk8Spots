@@ -41,6 +41,7 @@ body {
     transition: left ease-in-out .2s;
 }
 
+
 #menuLateral .btn {
     border-radius: 0;
     color: rgb(255, 255, 255);
