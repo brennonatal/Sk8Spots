@@ -126,12 +126,14 @@
      // });
     }
 
-    if  (location.href.indexOf("https://") === 0) { // || */ (location.href.indexOf("localhost") >= 0) {
+    if /* (location.href.indexOf("https://") === 0) { //|| */ (location.href.indexOf("localhost") >= 0) {
         navigator.geolocation.getCurrentPosition(function (location) {
-            iniciarMapa(location.coords.latitude, location.coords.longitude);
+            if (location) {
+              iniciarMapa(location.coords.latitude, location.coords.longitude); 
+            } 
         });
     } else {
-        iniciarMapa(-23.611178, -46.696075);
+        iniciarMapa(-23.587269, -46.644401);
     }
 
     function adjustBtnGroupFacilities() {
