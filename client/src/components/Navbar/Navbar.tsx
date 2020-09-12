@@ -3,7 +3,8 @@ import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { SidebarData } from './SidebarData'
-import './Navbar.css'
+// import './Navbar.css'
+import * as S from './navbar_style'
 
 function Navbar() {
 
@@ -13,33 +14,33 @@ function Navbar() {
 
 	return (
 		<>
-			<div className="navbar">
-				<Link to='#' className='menu-bars'>
+			<S.NavbarContainer>
+				<S.MenuBars to='#'>
 					<FaIcons.FaBars onClick={showSidebar} />
-				</Link>
-			</div>
+				</S.MenuBars>
+			</S.NavbarContainer>
 
 
-			<nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-				<ul className='nav-menu-items' onClick={showSidebar}>
-					<li className="navbar-toggle">
-						<Link to='#' className='menu-bars'>
+			<S.NavMenu active={sidebar ? true : false}>
+				<S.NavMenuItems onClick={showSidebar}>
+					<S.NavbarToggle>
+						<S.MenuBars to='#'>
 							<AiIcons.AiOutlineClose />
-						</Link>
-					</li>
+						</S.MenuBars>
+					</S.NavbarToggle>
 
 					{SidebarData.map((item, index) => {
 						return (
-							<li key={index} className={item.class}>
+							<S.NavText key={index}>
 								<Link to={item.path}>
 									{item.icon}
-									<span> {item.title} </span>
+									<S.Title> {item.title} </S.Title>
 								</Link>
-							</li>
+							</S.NavText>
 						)
 					})}
-				</ul>
-			</nav>
+				</S.NavMenuItems>
+			</S.NavMenu>
 		</>
 	)
 }
