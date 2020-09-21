@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import AddSpot from './pages/AddSpot/AddSpot'
 import Settings from './pages/Settings-page/Settings'
+import Favorites from './pages/Favorites/Favorites'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/add-spot' exact component={AddSpot} />
           <Route path='/settings' exact component={Settings} />
+          <Route path='/favorites' exact component={Favorites} />
         </Switch>
       </Router>
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaPlus } from 'react-icons/fa'
+import { FaPlus, FaStar } from 'react-icons/fa'
 import { AiFillHome } from 'react-icons/ai'
 import { IoMdSettings } from 'react-icons/io'
 
@@ -14,6 +14,12 @@ export const SidebarData = [
         title: 'Add Spot',
         path: '/add-spot',
         icon: <FaPlus />,
+        class: 'nav-text'
+    },
+    {
+        title: 'Favorites',
+        path: '/favorites',
+        icon: <FaStar />,
         class: 'nav-text'
     },
     {
