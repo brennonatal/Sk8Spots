@@ -2,13 +2,12 @@ import React from 'react';
 import './App.css';
 // import { Card } from './components'
 // import { Button } from './components'
-import Navbar from './components/Navbar/Navbar';
+import { Navbar } from './components';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import AddSpot from './pages/AddSpot/AddSpot'
-import Settings from './pages/Settings-page/Settings'
-import Favorites from './pages/Favorites/Favorites'
-
+import { Home } from './pages'
+import { AddSpot } from './pages'
+import { Settings } from './pages'
+import { Favorites } from './pages'
 
 function App() {
 

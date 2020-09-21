@@ -11,6 +11,8 @@ const NavbarContainer = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
+  z-index: 2;
+  position: absolute;
 
 `
 
@@ -21,6 +23,7 @@ const NavMenu = styled('nav') <NavMenuProps>`
   display: flex;
   justify-content: center;
   position: fixed;
+  z-index: 3;
   top: 0;
   left: ${props => props.active ? 0 : '-100%'};
   transition: ${props => props.active ? '350ms' : '850ms'};
@@ -52,7 +55,7 @@ const NavText = styled.li`
 `
 
 const MenuBars = styled(Link)`
-  margin-left: 2rem;
+  margin-left: 1rem;
   font-size: 2rem;
   background: none;
 `

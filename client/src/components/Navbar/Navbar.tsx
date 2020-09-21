@@ -3,7 +3,6 @@ import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { SidebarData } from './SidebarData'
-// import './Navbar.css'
 import * as S from './navbar_style'
 
 function Navbar() {
@@ -19,7 +18,6 @@ function Navbar() {
 					<FaIcons.FaBars onClick={showSidebar} />
 				</S.MenuBars>
 			</S.NavbarContainer>
-
 
 			<S.NavMenu active={sidebar ? true : false}>
 				<S.NavMenuItems onClick={showSidebar}>
