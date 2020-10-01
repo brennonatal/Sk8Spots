@@ -4,6 +4,7 @@ import * as AiIcons from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { SidebarData } from './SidebarData'
 import * as S from './navbar_style'
+import { Filter } from '../index'
 
 function Navbar() {
 
@@ -14,9 +15,16 @@ function Navbar() {
 	return (
 		<>
 			<S.NavbarContainer>
-				<S.MenuBars to='#'>
-					<FaIcons.FaBars onClick={showSidebar} />
+				<S.MenuBars to='#' onClick={showSidebar}>
+					<FaIcons.FaBars />
 				</S.MenuBars>
+				<br />
+
+				<S.MenuBars to='#'>
+					<Filter />
+				</S.MenuBars>
+
+
 			</S.NavbarContainer>
 
 			<S.NavMenu active={sidebar ? true : false}>

@@ -8,12 +8,10 @@ interface NavMenuProps {
 const NavbarContainer = styled.div`
   background-color: transparent;
   height: 80px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
   z-index: 2;
   position: absolute;
-
+  top: 0;
+  left: 0;
 `
 
 const NavMenu = styled('nav') <NavMenuProps>`
@@ -55,7 +53,8 @@ const NavText = styled.li`
 `
 
 const MenuBars = styled(Link)`
-  margin-left: 1rem;
+  padding: 1rem;
+  display: inline-block;
   font-size: 2rem;
   background: none;
 `
